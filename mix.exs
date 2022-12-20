@@ -32,6 +32,9 @@ defmodule Palette.MixProject do
       {:jason, "~> 1.0"},
       {:timex, ">= 0.0.0"},
       {:excoveralls, "~> 0.15", only: :test},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.8", only: :dev},
+      {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
 
       # Assets bundling
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
