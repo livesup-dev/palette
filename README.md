@@ -10,7 +10,13 @@
 
 <p align="center">
   <a href="#">
-    <img alt="Build Status" src="">
+    <img alt="Build Status" src="https://github.com/livesup-dev/palette/actions/workflows/test.yml/badge.svg">
+  </a>
+  <a href="https://codecov.io/gh/livesup-dev/palette">
+    <img src="https://codecov.io/gh/livesup-dev/palette/branch/main/graph/badge.svg?token=7XTN1OEUHY"/>
+  </a>
+  <a href="https://github.com/livesup-dev/l/commits/master">
+    <img src="https://img.shields.io/github/last-commit/livesup-dev/palette.svg"/>
   </a>
 </p>
 
