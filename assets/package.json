@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@alpinejs/collapse": "^3.10.4",
+    "@alpinejs/intersect": "^3.10.4",
+    "@alpinejs/persist": "^3.10.4",
+    "@kingshott/iodine": "^8.3.0",
+    "alpinejs": "^3.10.4",
+    "apexcharts": "^3.36.0",
+    "cleave.js": "^1.6.0",
+    "flatpickr": "^4.6.13",
+    "simplebar": "^5.3.9",
+    "tippy.js": "^6.3.7",
+    "toastify": "^2.0.1",
+    "toastify-js": "^1.12.0",
+    "@ryangjchandler/alpine-clipboard": "^2.2.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "palette",
+  "version": "1.0.0",
+  "description": "Palette assets",
+  "main": "./priv/static/palette.js",
+  "style": "./priv/static/palette.css",
+  "scripts": {
+    "build:css": "tailwindcss --minify -i assets/css/app.css -o ../priv/static/css/app.css",
+    "build:js": "esbuild assets/js/*.js --minify --bundle --outdir=../priv/static/js",
+    "build": "npm-run-all build:*",
+    "watch:css": "tailwindcss -i assets/css/app.css -o ../priv/static/css/app.css --watch",
+    "watch:js": "esbuild assets/js/*.js --bundle --outdir=../priv/static/js --watch",
+    "watch": "npm-run-all --parallel watch:*"
+  }
+}
