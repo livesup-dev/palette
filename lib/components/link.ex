@@ -47,8 +47,6 @@ defmodule Palette.Components.Link do
       )
       |> assign(:icon, "fa fa-edit")
 
-    "edit link" |> dbg
-
     Palette.Auth.Restricter.do_render(__MODULE__, :_do_link, assigns)
   end
 
