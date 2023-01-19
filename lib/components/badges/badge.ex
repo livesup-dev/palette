@@ -17,7 +17,7 @@ defmodule Palette.Components.Badges.Badge do
       |> assign(:class, full_class)
 
     ~H"""
-    <div class={@class}><%= @description %></div>
+    <span class={@class}><%= @description %></span>
     """
   end
 
