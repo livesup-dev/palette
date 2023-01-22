@@ -26,7 +26,8 @@ defmodule Palette.Components.CopyToClipboard do
                         content: input,
                         success:()=>$notification({text:'Text Copied',variant:'success'}),
                         error:()=>$notification({text:'Error',variant:'error'})
-                    })">
+                    })"
+    >
       <%= @label || render_slot(@inner_block) %>
     </span>
     """
