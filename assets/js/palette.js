@@ -1,13 +1,13 @@
 import "./custom.js"
 import topbar from "../vendor/topbar"
 import ApexChartHook from './apexChartHook';
-import Clipboard from "@ryangjchandler/alpine-clipboard"
+// import Clipboard from "@ryangjchandler/alpine-clipboard"
 
 import "phoenix_html"
 import { Socket } from "phoenix"
 import { LiveSocket } from "phoenix_live_view"
 
-Alpine.plugin(Clipboard)
+// Alpine.plugin(Clipboard)
 
 let Hooks = {
     ApexChartHook

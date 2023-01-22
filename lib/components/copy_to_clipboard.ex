@@ -1,9 +1,10 @@
 defmodule Palette.Components.CopyToClipboard do
   use Phoenix.Component
-  alias Palette.Utils.StringHelper
 
   attr(:class, :string)
   attr(:value, :string, required: true)
+  attr(:label, :string, default: nil)
+  slot(:inner_block, required: false)
 
   def copy_to_clipboard(assigns) do
     class =
@@ -13,18 +14,21 @@ defmodule Palette.Components.CopyToClipboard do
         "text-xs cursor-pointer select-none"
       end
 
-    label =
-      assigns
-      |> Map.get(:label, StringHelper.short_id(assigns[:value]))
-
     assigns =
       assigns
       |> assign(:class, class)
-      |> assign(:label, label)
 
     ~H"""
-    <span @click="$clipboard(input)" class={@class} x-data={ "{input: '#{@value}'}" }>
-      <%= @label %>
+    <span
+      class={@class}
+      x-data={ "{input: '#{@value}'}"}
+      @click="$clipboard({
+                        content: input,
+                        success:()=>$notification({text:'Text Copied',variant:'success'}),
+                        error:()=>$notification({text:'Error',variant:'error'})
+                    })"
+    >
+      <%= @label || render_slot(@inner_block) %>
     </span>
     """
   end

@@ -77,8 +77,17 @@ defmodule Palette.Utils.DateHelper do
     Timex.today()
   end
 
+  def now() do
+    Timex.now()
+  end
+
   def today_as_string() do
     Timex.today()
+    |> Timex.format!("%FT%T%:z", :strftime)
+  end
+
+  def now_as_string() do
+    Timex.now()
     |> Timex.format!("%FT%T%:z", :strftime)
   end
 
@@ -97,5 +106,14 @@ defmodule Palette.Utils.DateHelper do
       |> Timex.format("{M}/{D}")
 
     value
+  end
+
+  # create a function that receive a date and the number of hours to substract and return a new date using Timex
+  def substract_hours(date, hours) do
+    Timex.shift(date, hours: -hours)
+  end
+
+  def to_string(date) do
+    Timex.format!(date, "{ISO:Extended:Z}")
   end
 end

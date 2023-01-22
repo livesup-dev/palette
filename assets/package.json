@@ -7,11 +7,11 @@
     "alpinejs": "^3.10.4",
     "apexcharts": "^3.36.0",
     "cleave.js": "^1.6.0",
+    "clipboard": "^2.0.11",
     "flatpickr": "^4.6.13",
     "simplebar": "^5.3.9",
     "tippy.js": "^6.3.7",
     "toastify": "^2.0.1",
-    "toastify-js": "^1.12.0",
-    "@ryangjchandler/alpine-clipboard": "^2.2.0"
+    "toastify-js": "^1.12.0"
   }
 }
