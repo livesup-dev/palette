@@ -25,6 +25,16 @@ defmodule Palette.Components.Input do
     """
   end
 
+  attr(:name, :string, required: true)
+  attr(:value, :string, default: nil)
+  attr(:rest, :global)
+
+  def hidden_input(assigns) do
+    ~H"""
+    <input type="hidden" value={@value} name={@name} {@rest} />
+    """
+  end
+
   attr(:label, :string, required: true)
   attr(:name, :string, required: true)
   attr(:value, :string, default: nil)
