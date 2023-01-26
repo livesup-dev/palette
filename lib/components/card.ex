@@ -5,6 +5,7 @@ defmodule Palette.Components.Card do
   attr(:title, :string, default: nil)
   attr(:description, :string, default: nil)
   attr(:class, :string, default: "")
+  attr(:title_class, :string, default: "text-lg font-medium tracking-wide line-clamp-1")
   slot(:inner_block, required: false)
 
   def card(%{color: color, class: class} = assigns) do
@@ -15,7 +16,7 @@ defmodule Palette.Components.Card do
     ~H"""
     <div class={@class}>
       <div :if={@title}>
-        <h2 class="text-lg font-medium tracking-wide line-clamp-1">
+        <h2 class={@title_class}>
           <%= @title %>
         </h2>
       </div>
