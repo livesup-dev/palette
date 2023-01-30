@@ -17,6 +17,7 @@ defmodule Palette.Components.Input do
         type="text"
         value={@value}
         name={@name}
+        id={@name}
         placeholder={@placeholder}
         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
         {@rest}
@@ -31,7 +32,7 @@ defmodule Palette.Components.Input do
 
   def hidden_input(assigns) do
     ~H"""
-    <input type="hidden" value={@value} name={@name} {@rest} />
+    <input type="hidden" value={@value} name={@name} id={@name} {@rest} />
     """
   end
 
@@ -52,6 +53,7 @@ defmodule Palette.Components.Input do
       <textarea
         required={@required}
         name={@name}
+        id={@name}
         rows={@rows}
         placeholder={@placeholder}
         class="form-textarea mt-1.5 w-full resize-none rounded-lg border border-slate-300 bg-transparent p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"

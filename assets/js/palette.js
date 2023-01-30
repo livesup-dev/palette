@@ -1,16 +1,15 @@
 import "./custom.js"
 import topbar from "../vendor/topbar"
 import ApexChartHook from './apexChartHook';
-// import Clipboard from "@ryangjchandler/alpine-clipboard"
+import editor from './hooks/editor'
 
 import "phoenix_html"
 import { Socket } from "phoenix"
 import { LiveSocket } from "phoenix_live_view"
 
-// Alpine.plugin(Clipboard)
-
 let Hooks = {
-    ApexChartHook
+    ApexChartHook,
+    editor
 }
 
 // Show progress bar on live navigation and form submits

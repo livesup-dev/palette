@@ -10,10 +10,18 @@
 @tailwind components;
 @tailwind utilities;
 
-.while-submitting { display: none; }
-.phx-submit-loading .while-submitting { display: block; }
-.phx-submit-loading .inner-text { display: none; }
-.inner-text { display: block; }
+.while-submitting {
+  display: none;
+}
+.phx-submit-loading .while-submitting {
+  display: block;
+}
+.phx-submit-loading .inner-text {
+  display: none;
+}
+.inner-text {
+  display: block;
+}
 
 .card {
   position: relative;
@@ -26,15 +34,17 @@
   color: #64748b;
   --tw-shadow: 0 3px 10px 0 rgb(48 46 56 / 6%);
   --tw-shadow-colored: 0 3px 10px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .dark .card {
-  background-color: #26334D;
-  color: #A3ADC2;
+  background-color: #26334d;
+  color: #a3adc2;
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 /* Alerts and form errors used by phx.new */
@@ -82,12 +92,12 @@
   transition: opacity 1s ease-out;
 }
 
-.phx-loading{
+.phx-loading {
   cursor: wait;
 }
 
 .phx-modal {
-  opacity: 1!important;
+  opacity: 1 !important;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -95,7 +105,7 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .phx-modal-content {
@@ -250,7 +260,7 @@
 }
 
 .border-slate-150 {
-  border-color: #E9EEF5;
+  border-color: #e9eef5;
 }
 
 .border-primary {
@@ -289,22 +299,57 @@
   border-left-color: #ff9800;
 }
 
-@keyframes fade-in-scale-keys{
-  0% { scale: 0.95; opacity: 0; }
-  100% { scale: 1.0; opacity: 1; }
+@keyframes fade-in-scale-keys {
+  0% {
+    scale: 0.95;
+    opacity: 0;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
 }
 
-@keyframes fade-out-scale-keys{
-  0% { scale: 1.0; opacity: 1; }
-  100% { scale: 0.95; opacity: 0; }
+@keyframes fade-out-scale-keys {
+  0% {
+    scale: 1;
+    opacity: 1;
+  }
+  100% {
+    scale: 0.95;
+    opacity: 0;
+  }
 }
 
-@keyframes fade-in-keys{
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+@keyframes fade-in-keys {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-@keyframes fade-out-keys{
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes fade-out-keys {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.editor-parent {
+  width: 100%;
+  height: 600px;
+  display: inline-block;
+  position: relative;
+}
+
+.editor {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

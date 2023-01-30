@@ -119,19 +119,19 @@ defmodule Palette.Components.Table do
           <div class="is-scrollbar-hidden min-w-full overflow-x-auto">
             <table class="is-hoverable w-full text-left">
               <thead>
-                <tr>
-                  <th class="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                  <th class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5">
                     <%= @first_column.label %>
                   </th>
                   <th
                     :for={col <- @col}
-                    class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5"
+                    class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
                   >
                     <%= col.label %>
                   </th>
                   <th
                     :if={@actions}
-                    class="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5"
+                    class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
                   >
                     Actions
                   </th>

@@ -5,6 +5,10 @@ defmodule Palette.Utils.StringHelper do
     |> List.first()
   end
 
+  def blank?(str) do
+    str == "" || str == nil
+  end
+
   def truncate(text, opts \\ []) do
     max_length = opts[:max_length] || 50
     omission = opts[:omission] || "..."
