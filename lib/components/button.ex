@@ -40,7 +40,7 @@ defmodule Palette.Components.Button do
           fill="currentColor"
         />
       </svg>
-      <i :if={@left_icon} class={@left_icon}></i>
+      <i :if={@left_icon} class={"w-5 #{@left_icon}"}></i>
       <span class="inner-text"><%= @label %></span>
       <i :if={@right_icon} class={"w-5 #{@right_icon}"}></i>
       <span class="while-submitting"><%= @in_progress_label %></span>

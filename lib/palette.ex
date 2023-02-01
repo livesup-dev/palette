@@ -21,6 +21,7 @@ defmodule Palette do
         Containers.OneColumnList,
         CopyToClipboard,
         Favorite,
+        Editor,
         ErrorPage,
         Field,
         Footer,

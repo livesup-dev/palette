@@ -10820,11 +10820,12 @@ nav.header {
   height: 61px;
   width: 100%;
   border-bottom-width: 1px;
+  border-color: #E9EEF5;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   transition-duration: .25s;
-  border-color: #E9EEF5;
+  border-color: #e9eef5;
 }
 
 .dark nav.header {
@@ -13169,8 +13170,9 @@ span.flatpickr-weekday,.dark
 .flatpickr-day:focus,
 .flatpickr-day.prevMonthDay:focus,
 .flatpickr-day.nextMonthDay:focus {
-  background-color: #E9EEF5;
   border-color: #E9EEF5;
+  background-color: #E9EEF5;
+  border-color: #e9eef5;
 }
 
 .dark .flatpickr-day.inRange,.dark 
@@ -13191,6 +13193,7 @@ span.flatpickr-weekday,.dark
 
 .flatpickr-days {
   border-color: #E9EEF5;
+  border-color: #e9eef5;
 }
 
 .dark .flatpickr-days {
@@ -13233,6 +13236,7 @@ span.flatpickr-weekday,.dark
 
 .flatpickr-calendar.hasTime .flatpickr-time {
   border-color: #E9EEF5;
+  border-color: #e9eef5;
 }
 
 .dark .flatpickr-calendar.hasTime .flatpickr-time {
@@ -16539,15 +16543,17 @@ video {
   color: #64748b;
   --tw-shadow: 0 3px 10px 0 rgb(48 46 56 / 6%);
   --tw-shadow-colored: 0 3px 10px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .dark .card {
-  background-color: #26334D;
-  color: #A3ADC2;
+  background-color: #26334d;
+  color: #a3adc2;
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 /* Alerts and form errors used by phx.new */
@@ -16603,12 +16609,12 @@ video {
   transition: opacity 1s ease-out;
 }
 
-.phx-loading{
+.phx-loading {
   cursor: wait;
 }
 
 .phx-modal {
-  opacity: 1!important;
+  opacity: 1 !important;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -16616,7 +16622,7 @@ video {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .phx-modal-content {
@@ -16776,7 +16782,7 @@ video {
 }
 
 .border-slate-150 {
-  border-color: #E9EEF5;
+  border-color: #e9eef5;
 }
 
 .border-primary {
@@ -16815,45 +16821,33 @@ video {
   border-left-color: #ff9800;
 }
 
-@-webkit-keyframes fade-in-scale-keys{
+@-webkit-keyframes fade-in-scale-keys {
   0% {
     scale: 0.95;
     opacity: 0;
   }
 
   100% {
-    scale: 1.0;
+    scale: 1;
     opacity: 1;
   }
 }
 
-@keyframes fade-in-scale-keys{
+@keyframes fade-in-scale-keys {
   0% {
     scale: 0.95;
     opacity: 0;
   }
 
   100% {
-    scale: 1.0;
+    scale: 1;
     opacity: 1;
   }
 }
 
-@-webkit-keyframes fade-out-scale-keys{
+@-webkit-keyframes fade-out-scale-keys {
   0% {
-    scale: 1.0;
-    opacity: 1;
-  }
-
-  100% {
-    scale: 0.95;
-    opacity: 0;
-  }
-}
-
-@keyframes fade-out-scale-keys{
-  0% {
-    scale: 1.0;
+    scale: 1;
     opacity: 1;
   }
 
@@ -16863,7 +16857,19 @@ video {
   }
 }
 
-@-webkit-keyframes fade-in-keys{
+@keyframes fade-out-scale-keys {
+  0% {
+    scale: 1;
+    opacity: 1;
+  }
+
+  100% {
+    scale: 0.95;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fade-in-keys {
   0% {
     opacity: 0;
   }
@@ -16873,7 +16879,7 @@ video {
   }
 }
 
-@keyframes fade-in-keys{
+@keyframes fade-in-keys {
   0% {
     opacity: 0;
   }
@@ -16883,7 +16889,7 @@ video {
   }
 }
 
-@-webkit-keyframes fade-out-keys{
+@-webkit-keyframes fade-out-keys {
   0% {
     opacity: 1;
   }
@@ -16893,7 +16899,7 @@ video {
   }
 }
 
-@keyframes fade-out-keys{
+@keyframes fade-out-keys {
   0% {
     opacity: 1;
   }
@@ -16901,6 +16907,21 @@ video {
   100% {
     opacity: 0;
   }
+}
+
+.editor-parent {
+  width: 100%;
+  height: 600px;
+  display: inline-block;
+  position: relative;
+}
+
+.editor {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .placeholder\:font-light::-moz-placeholder {
