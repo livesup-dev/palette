@@ -1,5 +1,6 @@
 defmodule Palette.Components.Link do
   use Phoenix.Component
+  alias Palette.Components.ShortId
 
   attr(:path, :string, required: true)
   attr(:type, :atom, default: :patch)
@@ -48,6 +49,25 @@ defmodule Palette.Components.Link do
       |> assign(:icon, "fa fa-edit")
 
     Palette.Auth.Restricter.do_render(__MODULE__, :_do_link, assigns)
+  end
+
+  attr(:path, :string, required: true)
+  attr(:id, :string, required: true)
+  attr(:rest, :global)
+
+  def id_link(assigns) do
+    Palette.Auth.Restricter.do_render(__MODULE__, :_do_id_link, assigns)
+  end
+
+  def _do_id_link(assigns) do
+    ~H"""
+    <.link
+      navigate={@path}
+      class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+    >
+      <ShortId.short_id value={@id} />
+    </.link>
+    """
   end
 
   def _do_link(%{type: :href} = assigns) do
