@@ -3,7 +3,6 @@ import ApexCharts from "apexcharts";
 
 export default {
     mounted() {
-        const hook = this;
         this.props = getProps(this);
 
         this.handleEvent(`apex:${this.props.id}:init`, ({ spec }) => {

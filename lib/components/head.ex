@@ -1,7 +1,13 @@
 defmodule Palette.Components.Head do
   use Phoenix.Component
 
-  def head(assigns) do
+  attr(:google_map, :boolean, default: false)
+
+  def head(%{google_map: google_map} = assigns) do
+    assigns =
+      assigns
+      |> assign(:google_map_url, google_map_url(google_map))
+
     ~H"""
     <head>
       <!-- Meta tags  -->
@@ -36,7 +42,18 @@ defmodule Palette.Components.Head do
         localStorage.getItem("dark-mode") === "dark" &&
           document.documentElement.classList.add("dark");
       </script>
+
+      <script :if={@google_map} async defer src={@google_map_url}>
+      </script>
     </head>
     """
   end
+
+  defp google_map_url(true) do
+    api_key = Palette.Config.google_map_key()
+
+    "https://maps.googleapis.com/maps/api/js?key=#{api_key}&callback=Function.prototype"
+  end
+
+  defp google_map_url(false), do: nil
 end

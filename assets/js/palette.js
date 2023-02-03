@@ -1,7 +1,8 @@
 import "./custom.js"
 import topbar from "../vendor/topbar"
 import ApexChartHook from './apexChartHook';
-import editor from './hooks/editor'
+import Editor from './hooks/editor'
+import GoogleMaps from './hooks/google_maps'
 
 import "phoenix_html"
 import { Socket } from "phoenix"
@@ -9,7 +10,8 @@ import { LiveSocket } from "phoenix_live_view"
 
 let Hooks = {
     ApexChartHook,
-    editor
+    Editor,
+    GoogleMaps
 }
 
 // Show progress bar on live navigation and form submits
