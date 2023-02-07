@@ -1,13 +1,12 @@
 /* This file is for your main application CSS */
-@import "tailwindcss/base";
+/* @import "tailwindcss/base";
 @import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-@import "./base.css";
-@import "./components.css";
+@import "tailwindcss/utilities"; */
 
 @tailwind base;
+@import "./base.css";
 @tailwind components;
+@import "./components.css";
 @tailwind utilities;
 
 .while-submitting {
@@ -16,6 +15,7 @@
 .phx-submit-loading .while-submitting {
   display: block;
 }
+
 .phx-submit-loading .inner-text {
   display: none;
 }

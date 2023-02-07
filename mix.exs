@@ -52,13 +52,16 @@ defmodule Palette.MixProject do
   defp aliases do
     [
       coverage: "coveralls.lcov",
-      "assets.watch": "cmd npm run watch --prefix assets",
-      "assets.build": ["esbuild default", "tailwind default"],
-      "assets.build": [
-        "cmd npm run build --prefix assets",
-        "phx.digest",
-        "phx.digest.clean"
-      ]
+      "assets.watch": [
+        "tailwind default --watch",
+        "esbuild default --watch"
+      ],
+      "assets.build": ["esbuild default", "tailwind default", "phx.digest", "phx.digest.clean"]
+      # "assets.build": [
+      #   "cmd npm run build --prefix assets",
+      #   "phx.digest",
+      #   "phx.digest.clean"
+      # ]
     ]
   end
 end
