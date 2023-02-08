@@ -54,14 +54,10 @@ defmodule Palette.MixProject do
       coverage: "coveralls.lcov",
       "assets.watch": [
         "tailwind default --watch",
-        "esbuild default --watch"
+        "esbuild default --watch",
+        "phx.digest"
       ],
       "assets.build": ["esbuild default", "tailwind default", "phx.digest", "phx.digest.clean"]
-      # "assets.build": [
-      #   "cmd npm run build --prefix assets",
-      #   "phx.digest",
-      #   "phx.digest.clean"
-      # ]
     ]
   end
 end
