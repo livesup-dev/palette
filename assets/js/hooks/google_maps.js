@@ -19,8 +19,6 @@ export default {
 
     this.props = getProps(this);
 
-    console.log(this.map);
-
     this.handleEvent(`googlemap:${this.props.id}:locations`, ({ locations }) => {
         var map = this.map
             locations.forEach(function (location, i) {
