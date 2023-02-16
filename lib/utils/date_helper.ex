@@ -116,4 +116,17 @@ defmodule Palette.Utils.DateHelper do
   def to_string(date) do
     Timex.format!(date, "{ISO:Extended:Z}")
   end
+
+  def format_date(date, format \\ "{WDshort}, {Mshort} {D}, {YYYY} {h24}:{m}:{s}")
+  def format_date(nil, _format), do: nil
+
+  def format_date(date, format) when is_binary(date) do
+    Timex.parse!(date, "{ISO:Extended:Z}")
+    |> Timex.format!(format)
+  end
+
+  def format_date(date, format) do
+    date
+    |> Timex.format!(format)
+  end
 end

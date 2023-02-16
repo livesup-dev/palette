@@ -17188,16 +17188,16 @@ video {
   background-color: #f03000;
 }
 
+.hover\:bg-slate-150:hover {
+  background-color: #E9EEF5;
+}
+
 .hover\:bg-info\/20:hover {
   background-color: rgb(14 165 233 / 0.2);
 }
 
 .hover\:bg-error\/20:hover {
   background-color: rgb(255 87 36 / 0.2);
-}
-
-.hover\:bg-slate-150:hover {
-  background-color: #E9EEF5;
 }
 
 .hover\:bg-gray-100:hover {
@@ -17307,16 +17307,16 @@ video {
   background-color: #f03000;
 }
 
+.focus\:bg-slate-150:focus {
+  background-color: #E9EEF5;
+}
+
 .focus\:bg-info\/20:focus {
   background-color: rgb(14 165 233 / 0.2);
 }
 
 .focus\:bg-error\/20:focus {
   background-color: rgb(255 87 36 / 0.2);
-}
-
-.focus\:bg-slate-150:focus {
-  background-color: #E9EEF5;
 }
 
 .focus\:bg-primary\/20:focus {
@@ -17409,16 +17409,16 @@ video {
   background-color: rgb(240 48 0 / 0.9);
 }
 
+.active\:bg-slate-150\/80:active {
+  background-color: rgb(233 238 245 / 0.8);
+}
+
 .active\:bg-info\/25:active {
   background-color: rgb(14 165 233 / 0.25);
 }
 
 .active\:bg-error\/25:active {
   background-color: rgb(255 87 36 / 0.25);
-}
-
-.active\:bg-slate-150\/80:active {
-  background-color: rgb(233 238 245 / 0.8);
 }
 
 .active\:bg-primary\/25:active {
