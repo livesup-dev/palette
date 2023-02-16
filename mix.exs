@@ -55,6 +55,7 @@ defmodule Palette.MixProject do
       "assets.watch": [
         "tailwind default --watch",
         "esbuild default --watch",
+        # This is needed to trigger the live reload and to reflect the changes made when you remove classes from the components
         "phx.digest"
       ],
       "assets.build": ["esbuild default", "tailwind default", "phx.digest", "phx.digest.clean"]
