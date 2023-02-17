@@ -4,7 +4,7 @@ defmodule Palette.MixProject do
   def project do
     [
       app: :palette,
-      version: "0.1.26",
+      version: "0.1.27",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
