@@ -2,6 +2,7 @@ defmodule Palette.Components.AppHeader do
   use Phoenix.Component
 
   attr(:search, :boolean, default: false)
+  attr(:search_module, :any, default: nil)
   attr(:results_title, :string, default: "Users")
   attr(:results, :list, default: [])
 
@@ -52,7 +53,10 @@ defmodule Palette.Components.AppHeader do
           </button>
           <!-- Main Searchbar -->
           <%= if @search do %>
-            <%= live_component(Palette.Components.Live.GlobalSearch, id: "global-search") %>
+            <%= live_component(Palette.Components.Live.GlobalSearch,
+              id: "global-search",
+              search_module: @search_module
+            ) %>
           <% end %>
           <!-- Dark Mode Toggle -->
           <button

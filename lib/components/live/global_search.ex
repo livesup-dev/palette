@@ -1,7 +1,7 @@
 defmodule Palette.Components.Live.GlobalSearch do
   use Phoenix.LiveComponent
-  alias Palette.Components.Live.GlobalSearch
   alias Phoenix.LiveView.JS
+  alias Phoenix.LiveView.HTMLEngine
 
   @impl true
   def update(assigns, socket) do
@@ -47,7 +47,7 @@ defmodule Palette.Components.Live.GlobalSearch do
         phx-window-keydown={hide_modal()}
         phx-key="escape"
       >
-        <div class="absolute inset-0 bg-zinc-400/25 backdrop-blur-sm opacity-100"></div>
+        <div class="absolute inset-0 bg-zinc-400/25 opacity-100"></div>
         <div class="absolute inset-0 overflow-y-auto px-4 py-4 sm:py-20 sm:px-6 md:py-32 lg:px-8 lg:py-[15vh]">
           <div
             id="searchbox_container"
@@ -98,24 +98,17 @@ defmodule Palette.Components.Live.GlobalSearch do
                     phx-target={@myself}
                   />
                 </div>
-
-                <ul
-                  :if={@results != []}
-                  class="divide-y divide-slate-200 overflow-y-auto rounded-b-lg border-t border-slate-200 text-sm leading-6"
-                  id="searchbox__results_list"
-                  role="listbox"
-                >
-                  <%= for result <- @results do %>
-                    <li id={"#{result.id}"}>
-                      <.link
-                        navigate="/users"
-                        class="block p-4 hover:bg-slate-100 focus:outline-none focus:bg-slate-100 focus:text-sky-800"
-                      >
-                        <%= result.name %>
-                      </.link>
-                    </li>
-                  <% end %>
-                </ul>
+                <div :if={@results != []} class="card px-4 pb-4 pt-4">
+                  <div class="max-h-96 overflow-auto">
+                    <%= for result <- @results do %>
+                      <%= HTMLEngine.component(
+                        &result[:row_component].render/1,
+                        [row: result[:row]],
+                        {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
+                      ) %>
+                    <% end %>
+                  </div>
+                </div>
               </form>
             </div>
           </div>
@@ -126,23 +119,15 @@ defmodule Palette.Components.Live.GlobalSearch do
   end
 
   @impl true
-  def handle_event("search", %{"search" => %{"query" => query}}, socket) do
+  def handle_event(
+        "search",
+        %{"search" => %{"query" => query}},
+        %{assigns: %{search_module: search_module}} = socket
+      ) do
     # pid = self()
     # send_update(GlobalSearch, id: "global-search", results: search(query))
 
-    {:noreply, socket |> assign(:results, search(query))}
-  end
-
-  defp search(query) do
-    [
-      %{name: "Search result 1", id: "1"},
-      %{name: "Search result 2", id: "2"},
-      %{name: "Search result 3", id: "3"},
-      %{name: "Search result 4", id: "4"},
-      %{name: "Search result 5", id: "5"},
-      %{name: "Search result 6", id: "6"},
-      %{name: "Search result 7", id: "7"}
-    ]
+    {:noreply, socket |> assign(:results, search_module.search(query))}
   end
 
   def open_modal(js \\ %JS{}) do
