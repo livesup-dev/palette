@@ -35,7 +35,7 @@ defmodule Palette.Components.Live.GlobalSearch do
             >
             </path>
           </svg>
-          Find something...
+          Search...
         </button>
       </div>
 
@@ -47,11 +47,11 @@ defmodule Palette.Components.Live.GlobalSearch do
         phx-window-keydown={hide_modal()}
         phx-key="escape"
       >
-        <div class="absolute inset-0 bg-zinc-400/25 opacity-100"></div>
+        <div class="absolute inset-0 bg-slate-400/25 opacity-100"></div>
         <div class="absolute inset-0 overflow-y-auto px-4 py-4 sm:py-20 sm:px-6 md:py-32 lg:px-8 lg:py-[15vh]">
           <div
             id="searchbox_container"
-            class="mx-auto overflow-hidden rounded-lg bg-zinc-50 shadow-xl ring-zinc-900/7.5 sm:max-w-xl opacity-100 scale-100"
+            class="mx-auto overflow-hidden rounded-lg bg-slate-50 shadow-xl ring-slate-900/7.5 sm:max-w-2xl opacity-100 scale-100"
           >
             <div
               role="combobox"
@@ -65,7 +65,7 @@ defmodule Palette.Components.Live.GlobalSearch do
                     viewBox="0 0 20 20"
                     fill="none"
                     aria-hidden="true"
-                    class="pointer-events-none absolute left-3 top-0 h-full w-5 stroke-zinc-500"
+                    class="pointer-events-none absolute left-3 top-0 h-full w-5 stroke-slate-500 z-1 dark:stroke-white"
                   >
                     <path
                       stroke-linecap="round"
@@ -78,7 +78,7 @@ defmodule Palette.Components.Live.GlobalSearch do
                   <input
                     id="search-input"
                     name="search[query]"
-                    class="form-input flex-auto rounded-lg appearance-none bg-transparent pl-9 text-slate-500 outline-none focus:outline-none border-slate-300 focus:border-primary focus:ring-0 focus:shadow-none hover:border-slate-400 placeholder:text-slate-400 focus:w-full focus:flex-none sm:text-sm [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden pr-4 dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                    class="form-input flex-auto rounded-lg appearance-none bg-transparent pl-9 text-slate-500 outline-none focus:outline-none border-slate-300 focus:border-primary focus:ring-0 focus:shadow-none hover:border-slate-400 placeholder:text-slate-400 focus:w-full focus:flex-none sm:text-sm [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden pr-4 dark:text-white dark:bg-navy-400 dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                     style={
                       @results != [] &&
                         "border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: none"
@@ -90,7 +90,7 @@ defmodule Palette.Components.Live.GlobalSearch do
                     autocapitalize="off"
                     enterkeyhint="search"
                     spellcheck="false"
-                    placeholder="Find something..."
+                    placeholder="Search..."
                     type="search"
                     value=""
                     tabindex="0"
