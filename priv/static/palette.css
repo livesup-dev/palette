@@ -14553,6 +14553,10 @@ video {
   z-index: 100;
 }
 
+.z-1 {
+  z-index: 1;
+}
+
 .z-\[999999\] {
   z-index: 999999;
 }
@@ -14575,10 +14579,6 @@ video {
 
 .z-\[1000\] {
   z-index: 1000;
-}
-
-.z-1 {
-  z-index: 1;
 }
 
 .order-\[-1\] {
@@ -15668,12 +15668,8 @@ video {
   background-color: #26334D;
 }
 
-.bg-zinc-400\/25 {
-  background-color: rgb(161 161 170 / 0.25);
-}
-
-.bg-zinc-50 {
-  background-color: #fafafa;
+.bg-slate-400\/25 {
+  background-color: rgb(148 163 184 / 0.25);
 }
 
 .bg-slate-300\/\[\.25\] {
@@ -15826,8 +15822,8 @@ video {
   stroke: currentColor;
 }
 
-.stroke-zinc-500 {
-  stroke: #71717a;
+.stroke-slate-500 {
+  stroke: #64748b;
 }
 
 .\!stroke-current {
@@ -16384,12 +16380,6 @@ video {
 .grayscale {
   --tw-grayscale: grayscale(100%);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.backdrop-blur-sm {
-  --tw-backdrop-blur: blur(4px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 
 .backdrop-blur {
@@ -17653,6 +17643,10 @@ video {
   fill: #202B40;
 }
 
+.dark .dark\:stroke-white {
+  stroke: #fff;
+}
+
 .dark .dark\:text-navy-100 {
   color: #C2C9D6;
 }
@@ -17691,6 +17685,10 @@ video {
 
 .dark .dark\:text-gray-400 {
   color: #9ca3af;
+}
+
+.dark .dark\:text-white {
+  color: #fff;
 }
 
 .dark .dark\:shadow-soft-dark {
@@ -17909,8 +17907,8 @@ video {
     width: auto;
   }
 
-  .sm\:max-w-xl {
-    max-width: 36rem;
+  .sm\:max-w-2xl {
+    max-width: 42rem;
   }
 
   .sm\:grid-cols-2 {
