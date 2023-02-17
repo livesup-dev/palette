@@ -35,7 +35,7 @@ defmodule Palette.Components.Live.GlobalSearch do
             >
             </path>
           </svg>
-          Find something...
+          Search...
         </button>
       </div>
 
@@ -90,7 +90,7 @@ defmodule Palette.Components.Live.GlobalSearch do
                     autocapitalize="off"
                     enterkeyhint="search"
                     spellcheck="false"
-                    placeholder="Find something..."
+                    placeholder="Search..."
                     type="search"
                     value=""
                     tabindex="0"
