@@ -24,7 +24,7 @@ defmodule Palette.Components.Live.GlobalSearch do
       <div class="block max-w-xs flex-auto">
         <button
           type="button"
-          class="hidden text-gray-500 bg-white hover:ring-gray-500 ring-gray-300 h-8 w-full items-center gap-2 rounded-md pl-2 pr-3 text-sm ring-1 transition lg:flex focus:[&:not(:focus-visible)]:outline-none"
+          class="hidden text-slate-500 hover:ring-slate-300 ring-slate-300 h-8 w-full items-center gap-2 rounded-md pl-2 pr-3 text-sm ring-1 transition lg:flex focus:[&:not(:focus-visible)]:outline-none dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
           phx-click={open_modal()}
         >
           <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="h-5 w-5 stroke-current">
@@ -41,18 +41,17 @@ defmodule Palette.Components.Live.GlobalSearch do
 
       <div
         id="searchbar-dialog"
-        class="hidden fixed inset-0 z-50"
+        class="hidden absolute h-screen inset-0 z-50"
         role="dialog"
         aria-modal="true"
         phx-window-keydown={hide_modal()}
         phx-key="escape"
       >
-        <div class="fixed inset-0 bg-zinc-400/25 backdrop-blur-sm opacity-100"></div>
-        <div class="fixed inset-0 overflow-y-auto px-4 py-4 sm:py-20 sm:px-6 md:py-32 lg:px-8 lg:py-[15vh]">
+        <div class="absolute inset-0 bg-zinc-400/25 backdrop-blur-sm opacity-100"></div>
+        <div class="absolute inset-0 overflow-y-auto px-4 py-4 sm:py-20 sm:px-6 md:py-32 lg:px-8 lg:py-[15vh]">
           <div
             id="searchbox_container"
             class="mx-auto overflow-hidden rounded-lg bg-zinc-50 shadow-xl ring-zinc-900/7.5 sm:max-w-xl opacity-100 scale-100"
-            phx-hook="SearchBar"
           >
             <div
               role="combobox"
@@ -79,7 +78,7 @@ defmodule Palette.Components.Live.GlobalSearch do
                   <input
                     id="search-input"
                     name="search[query]"
-                    class="flex-auto rounded-lg appearance-none bg-transparent pl-10 text-zinc-900 outline-none focus:outline-none border-slate-200 focus:border-slate-200 focus:ring-0 focus:shadow-none placeholder:text-zinc-500 focus:w-full focus:flex-none sm:text-sm [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden pr-4"
+                    class="form-input flex-auto rounded-lg appearance-none bg-transparent pl-9 text-slate-500 outline-none focus:outline-none border-slate-300 focus:border-primary focus:ring-0 focus:shadow-none hover:border-slate-400 placeholder:text-slate-400 focus:w-full focus:flex-none sm:text-sm [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden pr-4 dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                     style={
                       @results != [] &&
                         "border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: none"
