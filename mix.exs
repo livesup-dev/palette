@@ -4,7 +4,7 @@ defmodule Palette.MixProject do
   def project do
     [
       app: :palette,
-      version: "0.1.28",
+      version: "0.1.29",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -52,13 +52,13 @@ defmodule Palette.MixProject do
   defp aliases do
     [
       coverage: "coveralls.lcov",
-      "assets.watch": "cmd npm run watch --prefix assets",
-      "assets.build": ["esbuild default", "tailwind default"],
-      "assets.build": [
-        "cmd npm run build --prefix assets",
-        "phx.digest",
-        "phx.digest.clean"
-      ]
+      "assets.watch": [
+        "tailwind default --watch",
+        "esbuild default --watch",
+        # This is needed to trigger the live reload and to reflect the changes made when you remove classes from the components
+        "phx.digest"
+      ],
+      "assets.build": ["esbuild default", "tailwind default", "phx.digest", "phx.digest.clean"]
     ]
   end
 end

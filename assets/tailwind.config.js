@@ -39,11 +39,7 @@ const customColors = {
 };
 
 module.exports = {
-  content: [
-    "./css/**/*.css",
-    "./js/**/*.js",
-    "../lib/components/**/*.*ex",
-  ],
+  content: ["./js/**/*.{js,ts}", "../lib/components/**/*.*ex"],
   darkMode: "class",
   theme: {
     extend: {
