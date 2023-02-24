@@ -15,12 +15,13 @@ defmodule Palette.Components.Table do
   slot(:adv_search, doc: "Describe advance inputs")
   slot(:actions, doc: "Describe one of your table columns")
 
-  def table(assigns) do
+  def table(%{actions: actions} = assigns) do
     {first_column, cols} = assigns[:col] |> List.pop_at(0)
 
     assigns =
       assigns
       |> assign(:first_column, first_column)
+      |> assign(:show_actions, length(actions) > 0)
       |> assign(:col, cols)
 
     ~H"""
@@ -130,7 +131,7 @@ defmodule Palette.Components.Table do
                     <%= col.label %>
                   </th>
                   <th
-                    :if={@actions}
+                    :if={@show_actions}
                     class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
                   >
                     Actions
