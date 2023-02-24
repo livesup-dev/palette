@@ -2,6 +2,7 @@ defmodule Palette.Components.Head do
   use Phoenix.Component
 
   attr(:google_map, :boolean, default: false)
+  attr(:title_suffix, :string, default: "")
 
   def head(%{google_map: google_map} = assigns) do
     assigns =
@@ -21,7 +22,7 @@ defmodule Palette.Components.Head do
       <link rel="icon" type="image/png" href="/images/favicon.png" />
 
       <meta name="csrf-token" content={Phoenix.HTML.Tag.csrf_token_value()} />
-      <.live_title suffix=" · Welcome">
+      <.live_title suffix={" · #{@title_suffix}"}>
         <%= assigns[:page_title] || "Welcome" %>
       </.live_title>
       <link phx-track-static rel="stylesheet" href="/assets/app.css" />
