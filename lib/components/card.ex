@@ -5,7 +5,11 @@ defmodule Palette.Components.Card do
   attr(:title, :string, default: nil)
   attr(:description, :string, default: nil)
   attr(:class, :string, default: "")
-  attr(:title_class, :string, default: "text-lg font-medium tracking-wide line-clamp-1")
+
+  attr(:title_class, :string,
+    default: "font-medium tracking-wide text-slate-700 dark:text-navy-100"
+  )
+
   slot(:inner_block, required: false)
 
   def card(%{color: color, class: class} = assigns) do
@@ -15,7 +19,7 @@ defmodule Palette.Components.Card do
 
     ~H"""
     <div class={@class}>
-      <div :if={@title}>
+      <div :if={@title} class="my-3 flex h-8 items-center justify-between">
         <h2 class={@title_class}>
           <%= @title %>
         </h2>
@@ -27,6 +31,44 @@ defmodule Palette.Components.Card do
         <%= render_slot(@inner_block) %>
       </div>
     </div>
+    """
+  end
+
+  attr(:label, :string, required: true)
+  attr(:value, :string, default: nil)
+  slot(:inner_block, required: false)
+
+  def card_field(assigns) do
+    ~H"""
+    <div class="flex justify-between">
+      <p class="line-clamp-1 text-slate-700 dark:text-navy-100">
+        <%= @label %>
+      </p>
+      <p class="text-right"><%= @value || render_slot(@inner_block) %></p>
+    </div>
+    """
+  end
+
+  attr(:label, :string, required: true)
+  attr(:icon_class, :string, required: true)
+  attr(:tooltip, :string, default: "")
+
+  def card_icon_field(assigns) do
+    ~H"""
+    <div class="flex justify-between">
+      <p class="line-clamp-1 text-slate-700 dark:text-navy-100" x-tooltip.light={"'#{@tooltip}'"}>
+        <%= @label %>
+      </p>
+      <p class="text-right">
+        <i class={@icon_class} />
+      </p>
+    </div>
+    """
+  end
+
+  def card_line(assigns) do
+    ~H"""
+    <div class="my-3 h-px bg-slate-200 dark:bg-navy-500"></div>
     """
   end
 
