@@ -1,6 +1,9 @@
 defmodule Palette.Components.Card do
   use Phoenix.Component
 
+  alias Palette.Utils.StringHelper
+  alias Palette.Utils.DateHelper
+
   attr(:color, :atom, default: :default, values: [:default, :success, :warning, :error])
   attr(:title, :string, default: nil)
   attr(:description, :string, default: nil)
@@ -29,6 +32,30 @@ defmodule Palette.Components.Card do
           <%= @description %>
         </p>
         <%= render_slot(@inner_block) %>
+      </div>
+    </div>
+    """
+  end
+
+  attr(:title, :string, required: true)
+  attr(:description, :string, default: "")
+  slot(:inner_block, required: true)
+
+  def card_fields_group(assigns) do
+    ~H"""
+    <div class="rounded-lg bg-info/10 px-4 pb-5 dark:bg-navy-800 sm:px-5">
+      <div class="space-y-4 py-3">
+        <div>
+          <h3 class="text-lg font-medium text-slate-700 dark:text-navy-100">
+            <%= @title %>
+          </h3>
+          <p class="text-xs text-slate-400 dark:text-navy-300">
+            <%= @description %>
+          </p>
+        </div>
+        <div class="space-y-3 text-xs+">
+          <%= render_slot(@inner_block) %>
+        </div>
       </div>
     </div>
     """
@@ -69,6 +96,33 @@ defmodule Palette.Components.Card do
   def card_line(assigns) do
     ~H"""
     <div class="my-3 h-px bg-slate-200 dark:bg-navy-500"></div>
+    """
+  end
+
+  attr(:label, :string, required: true)
+  attr(:value, :string, required: true)
+  attr(:format, :string, required: true, values: ["date_from_now", "short_id"])
+
+  def card_formatted_field(%{format: "date_from_now", value: value} = assigns) do
+    assigns
+    |> assign(:value, DateHelper.from_now(value))
+    |> _card_formatted_field()
+  end
+
+  def card_formatted_field(%{format: "short_id", value: value} = assigns) do
+    assigns
+    |> assign(:value, StringHelper.short_id(value))
+    |> _card_formatted_field()
+  end
+
+  defp _card_formatted_field(assigns) do
+    ~H"""
+    <div class="flex justify-between">
+      <p class="font-medium text-slate-700 dark:text-navy-100">
+        <%= @label %>
+      </p>
+      <p class="text-right"><%= @value %></p>
+    </div>
     """
   end
 
