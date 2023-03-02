@@ -89,7 +89,7 @@ defmodule Palette.Components.Table do
         </div>
         <div id="adv-search" phx-update="ignore" hidden style="height: auto;">
           <Card.card title="Adv Search">
-            <.form :let={f} for={:adv_filter} phx-submit="adv-search" role="form text-left">
+            <.form :let={f} for={%{}} as={:adv_filter} phx-submit="adv-search" role="form text-left">
               <div class="max-w-2xl py-3">
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6">
                   <%= render_slot(@adv_search, f) %>

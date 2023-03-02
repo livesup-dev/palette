@@ -162,11 +162,9 @@ defmodule Palette.Components.Modal do
 
   def default_modal_actions(assigns) do
     ~H"""
-    <.modal_actions>
-      <.close_modal_button />
-      <.save_modal_button :if={@action != :delete} />
-      <.delete_modal_button :if={@action == :delete} />
-    </.modal_actions>
+    <.close_modal_button />
+    <.save_modal_button :if={@action != :delete} />
+    <.delete_modal_button :if={@action == :delete} />
     """
   end
 
