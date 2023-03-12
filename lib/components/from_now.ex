@@ -5,6 +5,12 @@ defmodule Palette.Components.FromNow do
   attr(:value, :string, required: true)
   attr(:class, :string, default: "font-semibold leading-tight text-xs text-slate-400")
 
+  def from_now(%{value: nil} = assigns) do
+    ~H"""
+    <span class={@class}>N/A</span>
+    """
+  end
+
   def from_now(%{value: value} = assigns) do
     assigns =
       assigns

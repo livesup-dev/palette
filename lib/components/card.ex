@@ -76,6 +76,17 @@ defmodule Palette.Components.Card do
     """
   end
 
+  attr(:value, :string, default: nil)
+  slot(:inner_block, required: false)
+
+  def card_paragraph(assigns) do
+    ~H"""
+    <div class="flex justify-start">
+      <%= @value || render_slot(@inner_block) %>
+    </div>
+    """
+  end
+
   attr(:label, :string, required: true)
   attr(:icon_class, :string, required: true)
   attr(:tooltip, :string, default: "")
