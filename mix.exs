@@ -4,7 +4,7 @@ defmodule Palette.MixProject do
   def project do
     [
       app: :palette,
-      version: "0.1.34",
+      version: "0.1.35",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -36,6 +36,7 @@ defmodule Palette.MixProject do
       {:sobelow, "~> 0.8", only: :dev},
       {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
       {:heroicons, "~> 0.5.0"},
+      {:earmark, "~> 1.4"},
 
       # Assets bundling
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},

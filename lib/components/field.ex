@@ -2,6 +2,7 @@ defmodule Palette.Components.Field do
   use Phoenix.Component
   alias Palette.Components.CopyToClipboard
   alias Palette.Components.FromNow
+  alias Palette.Utils.StringHelper
 
   attr(:value, :string, required: true)
 
@@ -41,6 +42,19 @@ defmodule Palette.Components.Field do
       </span>
       <%= @value %>
     </span>
+    """
+  end
+
+  attr(:value, :string, required: true)
+  attr(:empty_value, :string, default: "")
+
+  def markdown_field(%{value: value, empty_value: empty_value} = assigns) do
+    assigns =
+      assigns
+      |> assign(:markdown, StringHelper.markdown_to_html(value || empty_value))
+
+    ~H"""
+    <%= Phoenix.HTML.raw(@markdown) %>
     """
   end
 end
