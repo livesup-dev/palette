@@ -1,7 +1,7 @@
 defmodule Palette.Components.Live.GlobalSearch do
   use Phoenix.LiveComponent
   alias Phoenix.LiveView.JS
-  alias Phoenix.LiveView.HTMLEngine
+  alias Phoenix.LiveView.TagEngine
 
   @impl true
   def update(assigns, socket) do
@@ -101,7 +101,7 @@ defmodule Palette.Components.Live.GlobalSearch do
                 <div :if={@results != []} class="card px-4 pb-4 pt-4">
                   <div class="max-h-96 overflow-auto">
                     <%= for result <- @results do %>
-                      <%= HTMLEngine.component(
+                      <%= TagEngine.component(
                         &result[:row_component].render/1,
                         [row: result[:row]],
                         {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
