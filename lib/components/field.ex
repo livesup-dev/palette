@@ -33,6 +33,7 @@ defmodule Palette.Components.Field do
 
   attr(:label, :string, required: true)
   attr(:value, :string, required: true)
+  slot(:inner_block, required: false)
 
   def field(assigns) do
     ~H"""
@@ -40,7 +41,7 @@ defmodule Palette.Components.Field do
       <span class="font-semibold text-slate-700 sm:ml-2 mr-1">
         <%= @label %>:
       </span>
-      <%= @value %>
+      <%= @value || render_slot(@inner_block) %>
     </span>
     """
   end
