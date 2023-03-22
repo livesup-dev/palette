@@ -37,7 +37,6 @@ defmodule Palette.MixProject do
       {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
       {:heroicons, "~> 0.5.0"},
       {:earmark, "~> 1.4"},
-      {:excoveralls, "~> 0.10", only: :test},
 
       # Assets bundling
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
