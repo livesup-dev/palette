@@ -1,4 +1,4 @@
-defmodule Palette.Components.Radio.Radio do
+defmodule Palette.Components.Radio do
   use Phoenix.Component
 
   attr(:name, :string, default: "")

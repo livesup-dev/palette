@@ -1,8 +1,9 @@
 defmodule Palette.Components.Badges.Badge do
   use Phoenix.Component
 
-  attr(:description, :string, required: true)
+  attr(:description, :string, default: nil)
   attr(:class, :string, default: "")
+  slot(:inner_block, required: false)
 
   attr(:color, :atom,
     default: :default,
@@ -17,7 +18,7 @@ defmodule Palette.Components.Badges.Badge do
       |> assign(:class, full_class)
 
     ~H"""
-    <span class={@class}><%= @description %></span>
+    <span class={@class}><%= @description || render_slot(@inner_block) %></span>
     """
   end
 

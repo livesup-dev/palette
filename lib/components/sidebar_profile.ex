@@ -2,6 +2,7 @@ defmodule Palette.Components.SidebarProfile do
   use Phoenix.Component
 
   attr(:logout_path, :string, required: true)
+  attr(:profile_path, :string, default: "/profile")
   attr(:user, :map, required: true)
 
   def sidebar_profile(assigns) do
@@ -40,6 +41,38 @@ defmodule Palette.Components.SidebarProfile do
           </div>
           <div class="flex flex-col pt-2 pb-5">
             <div class="mt-3 px-4">
+              <.link
+                href={@profile_path}
+                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+              >
+                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    >
+                    </path>
+                  </svg>
+                </div>
+
+                <div>
+                  <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                    Profile
+                  </h2>
+                  <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                    Your profile setting
+                  </div>
+                </div>
+              </.link>
+
               <.link
                 href={@logout_path}
                 method="delete"

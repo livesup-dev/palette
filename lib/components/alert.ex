@@ -1,6 +1,5 @@
 defmodule Palette.Components.Alert do
   use Phoenix.Component
-  import Phoenix.HTML
 
   attr(:description, :string, required: true)
   attr(:class, :string, default: "")
