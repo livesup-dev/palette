@@ -4,6 +4,7 @@ defmodule Palette.Components.Sidebar.Main do
 
   attr(:logo, :string, required: true)
   attr(:logout_path, :string, required: true)
+  attr(:profile_path, :string, default: "/profile")
   attr(:user, :map, required: true)
   slot(:inner_block, required: true)
 
