@@ -28,6 +28,7 @@ defmodule Palette do
         Form,
         FromNow,
         Head,
+        Icon,
         Input,
         Label,
         Link,

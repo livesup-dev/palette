@@ -28,7 +28,7 @@ defmodule Palette.MixProject do
       # Phoenix
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
-      {:phoenix_live_view, "~> 0.18.18"},
+      {:phoenix_live_view, "~> 0.18"},
       {:jason, "~> 1.0"},
       {:timex, ">= 0.0.0"},
       {:excoveralls, "~> 0.15", only: :test},
