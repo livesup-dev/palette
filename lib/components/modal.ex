@@ -3,78 +3,147 @@ defmodule Palette.Components.Modal do
   import Phoenix.LiveView.Helpers
 
   alias Phoenix.LiveView.JS
+  alias Palette.Components.Icon
 
   @doc """
-  Renders a live component inside a modal.
-
-  The rendered modal receives a `:return_to` option to properly update
-  the URL when the modal is closed.
+  Renders a modal.
 
   ## Examples
 
-      <.modal return_to={Routes.user_index_path(@socket, :index)}>
-        <.live_component
-          module={AwesomeWeb.UserLive.FormComponent}
-          id={@user.id || :new}
-          title={@page_title}
-          action={@live_action}
-          return_to={Routes.user_index_path(@socket, :index)}
-          user: @user
-        />
+      <.modal id="confirm-modal">
+        This is a modal.
       </.modal>
+
+  JS commands may be passed to the `:on_cancel` to configure
+  the closing/cancel event, for example:
+
+      <.modal id="confirm" on_cancel={JS.navigate(~p"/posts")}>
+        This is another modal.
+      </.modal>
+
   """
+  attr(:id, :string, default: "modal")
+  attr(:title, :string, required: true)
+  attr(:show, :boolean, default: false)
+  attr(:on_cancel, JS, default: %JS{})
+  attr(:return_to, :string, default: nil)
+  slot(:inner_block, required: true)
+
   def modal(assigns) do
     assigns =
       assigns
-      |> assign_new(:return_to, fn -> nil end)
-      |> assign_new(:title, fn -> nil end)
+      |> assign(:on_cancel, on_cancel(assigns))
 
     ~H"""
     <div
-      id="modal"
-      class="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-5"
-      phx-remove={hide_modal()}
+      id={@id}
+      phx-mounted={@show && show_modal(@id)}
+      phx-remove={hide_modal(@id)}
+      data-cancel={JS.exec(@on_cancel, "phx-remove")}
+      class="relative z-50 hidden"
     >
-      <div class="absolute inset-0 bg-slate-900/60 transition-opacity duration-300"></div>
+      <div id={"#{@id}-bg"} class="bg-zinc-50/90 fixed inset-0 transition-opacity" aria-hidden="true" />
       <div
-        id="modal-content"
-        class="relative w-full max-w-lg origin-top rounded-lg bg-white transition-all duration-300 dark:bg-navy-700"
-        phx-click-away={JS.dispatch("click", to: "#close")}
-        phx-window-keydown={JS.dispatch("click", to: "#close")}
-        phx-key="escape"
+        class="fixed inset-0 overflow-y-auto"
+        aria-labelledby={"#{@id}-title"}
+        aria-describedby={"#{@id}-description"}
+        role="dialog"
+        aria-modal="true"
+        tabindex="0"
       >
-        <div class="flex justify-between rounded-t-lg bg-slate-200 px-4 py-3 dark:bg-navy-800 sm:px-5">
-          <h3 class="text-base font-medium text-slate-700 dark:text-navy-100">
-            <%= @title %>
-          </h3>
-          <%= if @return_to do %>
-            <%= live_patch("✖",
-              to: @return_to,
-              id: "close",
-              class:
-                "btn -mr-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25",
-              phx_click: hide_modal()
-            ) %>
-          <% else %>
-            <a id="close" href="#" class="phx-modal-close" phx-click={hide_modal()}>✖</a>
-          <% end %>
-        </div>
-
-        <div class="px-4 py-4 sm:px-5">
-          <%= render_slot(@inner_block) %>
+        <div class="flex min-h-full items-center justify-center">
+          <div class="w-full max-w-3xl p-4 sm:p-6 lg:py-8">
+            <h3 class="text-base font-medium text-slate-700 dark:text-navy-100">
+              <%= @title %>
+            </h3>
+            <.focus_wrap
+              id={"#{@id}-container"}
+              phx-window-keydown={JS.exec("data-cancel", to: "##{@id}")}
+              phx-key="escape"
+              phx-click-away={JS.exec("data-cancel", to: "##{@id}")}
+              class="shadow-zinc-700/10 ring-zinc-700/10 relative hidden rounded-2xl bg-white p-14 shadow-lg ring-1 transition"
+            >
+              <div class="absolute top-6 right-5">
+                <button
+                  phx-click={JS.exec("data-cancel", to: "##{@id}")}
+                  type="button"
+                  class="-m-3 flex-none p-3 opacity-20 hover:opacity-40"
+                >
+                  <Icon.icon name="hero-x-mark-solid" class="h-5 w-5" />
+                </button>
+              </div>
+              <div id={"#{@id}-content"}>
+                <%= render_slot(@inner_block) %>
+              </div>
+            </.focus_wrap>
+          </div>
         </div>
       </div>
     </div>
     """
   end
 
+  ## JS Commands
+
+  def show(js \\ %JS{}, selector) do
+    JS.show(js,
+      to: selector,
+      transition:
+        {"transition-all transform ease-out duration-300",
+         "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
+         "opacity-100 translate-y-0 sm:scale-100"}
+    )
+  end
+
+  defp on_cancel(%{return_to: nil, on_cancel: on_cancel}), do: on_cancel
+
+  defp on_cancel(%{return_to: return_to}) do
+    JS.navigate(return_to)
+  end
+
+  def hide(js \\ %JS{}, selector) do
+    JS.hide(js,
+      to: selector,
+      time: 200,
+      transition:
+        {"transition-all transform ease-in duration-200",
+         "opacity-100 translate-y-0 sm:scale-100",
+         "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"}
+    )
+  end
+
+  def show_modal(js \\ %JS{}, id) when is_binary(id) do
+    js
+    |> JS.show(to: "##{id}")
+    |> JS.show(
+      to: "##{id}-bg",
+      transition: {"transition-all transform ease-out duration-300", "opacity-0", "opacity-100"}
+    )
+    |> show("##{id}-container")
+    |> JS.add_class("overflow-hidden", to: "body")
+    |> JS.focus_first(to: "##{id}-content")
+  end
+
+  def hide_modal(js \\ %JS{}, id) do
+    js
+    |> JS.hide(
+      to: "##{id}-bg",
+      transition: {"transition-all transform ease-in duration-200", "opacity-100", "opacity-0"}
+    )
+    |> hide("##{id}-container")
+    |> JS.hide(to: "##{id}", transition: {"block", "block", "hidden"})
+    |> JS.remove_class("overflow-hidden", to: "body")
+    |> JS.pop_focus()
+  end
+
   attr(:label, :string, default: "Cancel")
+  attr(:modal_id, :string, default: "modal")
 
   def close_modal_button(assigns) do
     ~H"""
     <a
       href="#"
-      phx-click={JS.dispatch("click", to: "#close")}
+      phx-click={JS.exec("data-cancel", to: "##{@modal_id}")}
       class="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
     >
       <%= @label %>
@@ -166,11 +235,5 @@ defmodule Palette.Components.Modal do
     <.save_modal_button :if={@action != :delete} />
     <.delete_modal_button :if={@action == :delete} />
     """
-  end
-
-  defp hide_modal(js \\ %JS{}) do
-    js
-    |> JS.hide(to: "#modal", transition: "fade-out")
-    |> JS.hide(to: "#modal-content", transition: "fade-out-scale")
   end
 end

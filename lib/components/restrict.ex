@@ -1,8 +1,8 @@
 defmodule Palette.Components.Restrict do
   use Phoenix.Component
 
-  attr(:permission, :string)
-  attr(:permissions, :any, required: true)
+  attr(:permission, :string, default: "")
+  attr(:permissions, :any, default: [])
   slot(:inner_block, required: true)
 
   def restrict(%{permission: permission, permissions: permissions} = assigns) do

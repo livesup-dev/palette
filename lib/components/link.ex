@@ -5,6 +5,8 @@ defmodule Palette.Components.Link do
   attr(:path, :string, required: true)
   attr(:type, :atom, default: :patch)
   attr(:rest, :global)
+  attr(:permission, :string, default: "")
+  attr(:permissions, :any, default: [])
 
   def view_link(assigns) do
     assigns =
@@ -22,6 +24,8 @@ defmodule Palette.Components.Link do
   attr(:type, :atom, default: :patch)
   attr(:class, :string, default: "")
   attr(:rest, :global)
+  attr(:permission, :string, default: "")
+  attr(:permissions, :any, default: [])
 
   def delete_link(%{class: class} = assigns) do
     assigns =
@@ -38,6 +42,8 @@ defmodule Palette.Components.Link do
   attr(:path, :string, required: true)
   attr(:type, :atom, default: :patch)
   attr(:rest, :global)
+  attr(:permission, :string, default: "")
+  attr(:permissions, :any, default: [])
 
   def edit_link(assigns) do
     assigns =
@@ -54,6 +60,8 @@ defmodule Palette.Components.Link do
   attr(:path, :string, required: true)
   attr(:id, :string, required: true)
   attr(:rest, :global)
+  attr(:permission, :string)
+  attr(:permissions, :any, default: [])
 
   def id_link(assigns) do
     Palette.Auth.Restricter.do_render(__MODULE__, :_do_id_link, assigns)

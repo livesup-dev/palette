@@ -6,6 +6,8 @@ defmodule Palette.Components.ActionLink do
   attr(:tooltip, :string, required: true)
   attr(:icon, :atom, default: :add, values: [:add])
   attr(:custom_icon, :string, default: nil)
+  attr(:permission, :string, default: "")
+  attr(:permissions, :any, default: [])
 
   def action_link(assigns) do
     assigns =
