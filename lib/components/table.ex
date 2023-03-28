@@ -182,8 +182,11 @@ defmodule Palette.Components.Table do
 
             <ol class="pagination">
               <li class="rounded-l-lg bg-slate-150 dark:bg-navy-500">
-                <a
+                <button
+                  phx-click="paginate"
+                  phx-value-page={prev_page(@pagination)}
                   href="#"
+                  disabled={disable_prev_page(@pagination)}
                   class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 >
                   <svg
@@ -196,7 +199,7 @@ defmodule Palette.Components.Table do
                   >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                   </svg>
-                </a>
+                </button>
               </li>
 
               <li :for={page <- @pages} class="bg-slate-150 dark:bg-navy-500">
@@ -205,8 +208,10 @@ defmodule Palette.Components.Table do
                 </a>
               </li>
               <li class="rounded-r-lg bg-slate-150 dark:bg-navy-500">
-                <a
-                  href="#"
+                <button
+                  phx-click="paginate"
+                  phx-value-page={next_page(@pagination)}
+                  disabled={disable_next_page(@pagination)}
                   class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 >
                   <svg
@@ -223,12 +228,15 @@ defmodule Palette.Components.Table do
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
-                </a>
+                </button>
               </li>
             </ol>
 
             <div class="text-xs+">
-              1 - <%= @pagination.per_page %> of <%= @pagination.total %> entries
+              <%= @pagination.current_page * @pagination.per_page + 1 %> - <%= current_page(
+                @pagination.current_page
+              ) *
+                @pagination.per_page %> of <%= @pagination.total %> entries
             </div>
           </div>
         </div>
@@ -237,12 +245,32 @@ defmodule Palette.Components.Table do
     """
   end
 
+  defp disable_next_page(%{current_page: current_page, pages: pages})
+       when current_page == pages - 1,
+       do: true
+
+  defp disable_next_page(_), do: false
+
+  defp disable_prev_page(%{current_page: 0}), do: true
+  defp disable_prev_page(_), do: false
+
+  defp next_page(%{current_page: current_page, pages: pages}) when current_page < pages,
+    do: current_page + 1
+
+  defp next_page(%{current_page: current_page}), do: current_page
+
+  defp prev_page(%{current_page: 0}), do: 0
+
+  defp prev_page(%{current_page: current_page}) when current_page > 0,
+    do: current_page - 1
+
+  defp current_page(page), do: page + 1
+
   defp build_pages(nil), do: nil
 
   defp build_pages(pagination) do
     pagination
     |> Palette.Components.Table.Pagination.pagination()
-    |> dbg
   end
 
   defp page_class(%{active: false}),

@@ -3,7 +3,7 @@ defmodule Palette.Components.Link do
   alias Palette.Components.ShortId
 
   attr(:path, :string, required: true)
-  attr(:type, :atom, default: :patch)
+  attr(:type, :atom, default: :patch, values: [:href, :patch, :navigate])
   attr(:rest, :global)
   attr(:permission, :string, default: "")
   attr(:permissions, :any, default: [])
