@@ -19,7 +19,7 @@ defmodule Palette.Components.Form do
         phx-target={@target}
         role="form text-left"
       >
-        <div class="mt-4 space-y-4">
+        <div class="space-y-4">
           <%= render_slot(@inner_block, f) %>
           <div class="space-x-2 text-right">
             <%= render_slot(@actions, f) %>
