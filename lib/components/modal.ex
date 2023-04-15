@@ -48,7 +48,7 @@ defmodule Palette.Components.Modal do
         aria-hidden="true"
       />
       <div
-        class="relative w-full max-w-lg origin-top rounded-lg bg-white transition-all duration-300 dark:bg-navy-700"
+        class="relative w-3/4 origin-top rounded-lg bg-white transition-all duration-300 dark:bg-navy-700"
         aria-labelledby={"#{@id}-title"}
         aria-describedby={"#{@id}-description"}
         role="dialog"
