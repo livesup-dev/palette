@@ -242,9 +242,9 @@ defmodule Palette.Components.Modal do
   def assign_width_class(%{width: width} = assigns) do
     class =
       case width do
-        :small -> %{assigns | width_class: "w-full max-w-lg"}
-        :medium -> %{assigns | width_class: "w-2/3"}
-        :large -> %{assigns | width_class: "w-3/4"}
+        :small -> "w-full max-w-lg"
+        :medium -> "w-2/3"
+        :large -> "w-3/4"
       end
 
     assigns
