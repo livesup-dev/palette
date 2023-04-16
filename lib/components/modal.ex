@@ -26,6 +26,7 @@ defmodule Palette.Components.Modal do
   attr(:title, :string, required: true)
   attr(:show, :boolean, default: false)
   attr(:on_cancel, JS, default: %JS{})
+  attr(:width, :atom, default: :small, values: [:small, :medium, :large])
   attr(:return_to, :string, default: nil)
   slot(:inner_block, required: true)
 
@@ -33,6 +34,7 @@ defmodule Palette.Components.Modal do
     assigns =
       assigns
       |> assign(:on_cancel, on_cancel(assigns))
+      |> assign_width_class()
 
     ~H"""
     <div
@@ -48,7 +50,7 @@ defmodule Palette.Components.Modal do
         aria-hidden="true"
       />
       <div
-        class="relative w-3/4 origin-top rounded-lg bg-white transition-all duration-300 dark:bg-navy-700"
+        class={"relative #{@width_class} origin-top rounded-lg bg-white transition-all duration-300 dark:bg-navy-700"}
         aria-labelledby={"#{@id}-title"}
         aria-describedby={"#{@id}-description"}
         role="dialog"
@@ -235,5 +237,17 @@ defmodule Palette.Components.Modal do
     <.save_modal_button :if={@action != :delete} />
     <.delete_modal_button :if={@action == :delete} />
     """
+  end
+
+  def assign_width_class(%{width: width} = assigns) do
+    class =
+      case width do
+        :small -> %{assigns | width_class: "w-full max-w-lg"}
+        :medium -> %{assigns | width_class: "w-2/3"}
+        :large -> %{assigns | width_class: "w-3/4"}
+      end
+
+    assigns
+    |> assign(:width_class, class)
   end
 end
