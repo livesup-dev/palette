@@ -60,7 +60,8 @@ defmodule Palette.MixProject do
         # This is needed to trigger the live reload and to reflect the changes made when you remove classes from the components
         "phx.digest"
       ],
-      "assets.build": ["esbuild default", "tailwind default", "phx.digest", "phx.digest.clean"]
+      "assets.build": ["esbuild default", "tailwind default", "phx.digest", "phx.digest.clean"],
+      "assets.build.no_diggest": ["esbuild default", "tailwind default"]
     ]
   end
 end

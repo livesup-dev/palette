@@ -3,9 +3,9 @@ defmodule Palette.Components.Sidebar.Main do
   alias Palette.Components.{SidebarProfile, SettingButton}
 
   attr(:logo, :string, required: true)
-  attr(:logout_path, :string, required: true)
+  attr(:logout_path, :string, default: "/logout")
   attr(:profile_path, :string, default: "/profile")
-  attr(:user, :map, required: true)
+  attr(:user, :map, default: nil)
   slot(:inner_block, required: true)
 
   def sidebar_main(assigns) do
@@ -55,7 +55,7 @@ defmodule Palette.Components.Sidebar.Main do
         <!-- Bottom Links -->
         <div class="flex flex-col items-center space-y-3 py-3">
           <SettingButton.setting_button :if={@setting_button} />
-          <SidebarProfile.sidebar_profile logout_path={@logout_path} user={@user} />
+          <SidebarProfile.sidebar_profile :if={@user} logout_path={@logout_path} user={@user} />
         </div>
       </div>
     </div>
