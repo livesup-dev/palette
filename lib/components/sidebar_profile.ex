@@ -1,9 +1,9 @@
 defmodule Palette.Components.SidebarProfile do
   use Phoenix.Component
 
-  attr(:logout_path, :string, required: true)
+  attr(:logout_path, :string, default: "/log-out")
   attr(:profile_path, :string, default: "/profile")
-  attr(:user, :map, required: true)
+  attr(:user, :map, default: nil)
 
   def sidebar_profile(assigns) do
     assigns = assigns |> assign(:full_name, "")
@@ -11,6 +11,7 @@ defmodule Palette.Components.SidebarProfile do
     ~H"""
     <!-- Profile -->
     <div
+      :if={@user}
       x-data="usePopper({placement:'right-end',offset:12})"
       @click.outside="if(isShowPopper) isShowPopper = false"
       class="flex"

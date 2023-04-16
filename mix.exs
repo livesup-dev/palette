@@ -4,7 +4,7 @@ defmodule Palette.MixProject do
   def project do
     [
       app: :palette,
-      version: "0.1.40",
+      version: "0.1.41",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -60,7 +60,8 @@ defmodule Palette.MixProject do
         # This is needed to trigger the live reload and to reflect the changes made when you remove classes from the components
         "phx.digest"
       ],
-      "assets.build": ["esbuild default", "tailwind default", "phx.digest", "phx.digest.clean"]
+      "assets.build": ["esbuild default", "tailwind default", "phx.digest", "phx.digest.clean"],
+      "assets.build.no_diggest": ["esbuild default", "tailwind default"]
     ]
   end
 end

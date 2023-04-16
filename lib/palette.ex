@@ -48,6 +48,7 @@ defmodule Palette do
         Sidebar.Group,
         Sidebar.Item,
         Sidebar.Main,
+        Sidebar.MainItem,
         Sidebar.Panel,
         SideNav,
         Table,

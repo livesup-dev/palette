@@ -3,6 +3,7 @@ defmodule Palette.Components.Head do
 
   attr(:google_map, :boolean, default: false)
   attr(:title_suffix, :string, default: "")
+  slot(:custom)
 
   def head(%{google_map: google_map} = assigns) do
     assigns =
@@ -46,6 +47,7 @@ defmodule Palette.Components.Head do
 
       <script :if={@google_map} async defer src={@google_map_url}>
       </script>
+      <%= render_slot(@custom) %>
     </head>
     """
   end
