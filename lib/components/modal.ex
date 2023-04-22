@@ -1,6 +1,6 @@
 defmodule Palette.Components.Modal do
   use Phoenix.Component
-  import Phoenix.LiveView.Helpers
+  # import Phoenix.LiveView.Helpers
 
   alias Phoenix.LiveView.JS
   alias Palette.Components.Icon
@@ -100,7 +100,7 @@ defmodule Palette.Components.Modal do
   defp on_cancel(%{return_to: nil, on_cancel: on_cancel}), do: on_cancel
 
   defp on_cancel(%{return_to: return_to}) do
-    JS.navigate(return_to)
+    JS.patch(return_to)
   end
 
   def hide(js \\ %JS{}, selector) do

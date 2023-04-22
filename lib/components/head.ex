@@ -27,7 +27,6 @@ defmodule Palette.Components.Head do
         <%= assigns[:page_title] || "Welcome" %>
       </.live_title>
       <link phx-track-static rel="stylesheet" href="/assets/app.css" />
-      <!-- TODO: We need to get rid of these js2 -->
       <script defer phx-track-static type="text/javascript" src="/assets/app.js">
       </script>
       <!-- Fonts -->

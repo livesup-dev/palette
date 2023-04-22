@@ -14873,6 +14873,10 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   width: 12rem;
 }
 
+.w-2\/3 {
+  width: 66.666667%;
+}
+
 .w-3\/4 {
   width: 75%;
 }
@@ -14939,6 +14943,10 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .max-w-full {
   max-width: 100%;
+}
+
+.max-w-lg {
+  max-width: 32rem;
 }
 
 .max-w-2xl {
@@ -15485,10 +15493,6 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .fill-slate-800 {
   fill: #1e293b;
-}
-
-.fill-primary {
-  fill: #4f46e5;
 }
 
 .stroke-current {
@@ -17014,10 +17018,6 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .dark .dark\:fill-navy-200 {
   fill: #A3ADC2;
-}
-
-.dark .dark\:fill-accent {
-  fill: #5f5af6;
 }
 
 .dark .dark\:stroke-white {
