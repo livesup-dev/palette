@@ -7,7 +7,7 @@ defmodule Palette.Components.Restrict do
 
   def restrict(%{permission: permission, permissions: permissions} = assigns) do
     assigns
-    |> render(String.contains?(permissions, permission))
+    |> render(String.contains?(permission, permissions))
   end
 
   defp render(assigns, true) do
