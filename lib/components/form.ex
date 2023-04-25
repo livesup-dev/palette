@@ -8,6 +8,17 @@ defmodule Palette.Components.Form do
   attr(:event, :string, default: "save")
   attr(:target, :map, default: nil)
 
+  attr(:rest, :global,
+    include: ~w(autocomplete name rel action enctype method novalidate target),
+    doc: "the arbitrary HTML attributes to apply to the form tag"
+  )
+
+  def simple_form(assigns) do
+    assigns
+    |> xform()
+  end
+
+  @deprecated "Use simple_form/1 instead"
   def xform(assigns) do
     ~H"""
     <div class="px-4 py-4 sm:px-5">
@@ -18,6 +29,7 @@ defmodule Palette.Components.Form do
         phx-submit={@event}
         phx-target={@target}
         role="form text-left"
+        {@rest}
       >
         <div class="space-y-4">
           <%= render_slot(@inner_block, f) %>

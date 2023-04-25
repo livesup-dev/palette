@@ -32,6 +32,7 @@ defmodule Palette do
         Input,
         Label,
         Link,
+        List,
         Loading,
         MainContentWrapper,
         SignIn,
