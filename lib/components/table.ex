@@ -3,7 +3,9 @@ defmodule Palette.Components.Table do
   alias Palette.Components.Card
   alias Phoenix.LiveView.JS
 
+  attr(:id, :string, default: "p-table")
   attr(:rows, :list, doc: "Data you want to list", required: true)
+  attr(:row_id, :any, default: nil, doc: "the function for generating the row id")
   attr(:search, :boolean, doc: "Show or hide search bar", default: false)
   attr(:pagination, :map, doc: "Show or hide pagination", default: nil)
 
@@ -17,6 +19,11 @@ defmodule Palette.Components.Table do
 
   def table(%{actions: actions, pagination: pagination} = assigns) do
     {first_column, cols} = assigns[:col] |> List.pop_at(0)
+
+    assigns =
+      with %{rows: %Phoenix.LiveView.LiveStream{}} <- assigns do
+        assign(assigns, row_id: assigns.row_id || fn {id, _item} -> id end)
+      end
 
     assigns =
       assigns
@@ -139,9 +146,10 @@ defmodule Palette.Components.Table do
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id={@id} phx-update={match?(%Phoenix.LiveView.LiveStream{}, @rows) && "stream"}>
                 <tr
                   :for={row <- @rows}
+                  id={@row_id && @row_id.(row)}
                   class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
                 >
                   <td class="whitespace-nowrap px-4 py-3 sm:px-5">

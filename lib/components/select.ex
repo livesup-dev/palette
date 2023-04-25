@@ -30,6 +30,13 @@ defmodule Palette.Components.Select do
   def select(%{entities: entities} = assigns) do
     options = Enum.map(entities, fn entity -> [key: entity.name, value: entity.id] end)
 
+    assigns =
+      with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
+        assigns
+        |> assign(:value, field.value)
+        |> assign(:errors, field.errors)
+      end
+
     assigns
     |> assign(:options, options)
     |> _do_select()

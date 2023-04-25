@@ -7,6 +7,7 @@ defmodule Palette.Components.Checkbox do
   attr(:class, :string, default: "")
   attr(:label, :string, required: true)
   attr(:checked, :boolean, default: false)
+  attr(:errors, :list, default: [])
 
   attr(:color, :atom,
     default: :default,
@@ -14,6 +15,13 @@ defmodule Palette.Components.Checkbox do
   )
 
   def outline_circle_checkbox(assigns) do
+    assigns =
+      with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
+        assigns
+        |> assign(:value, field.value)
+        |> assign(:errors, field.errors)
+      end
+
     assigns
     |> assign(:type, :outline_circle)
     |> do_render_check()
@@ -30,6 +38,9 @@ defmodule Palette.Components.Checkbox do
     <label class="inline-flex items-center space-x-2">
       <input type="checkbox" value={@value} name={@name} class={@class} {@rest} checked={@checked} />
       <p><%= @label %></p>
+      <Palette.Components.Input.error :for={msg <- @errors}>
+        <%= msg %>
+      </Palette.Components.Input.error>
     </label>
     """
   end
