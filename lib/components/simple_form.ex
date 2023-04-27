@@ -2,7 +2,11 @@ defmodule Palette.Components.Form do
   use Phoenix.Component
 
   slot(:inner_block, required: true)
-  slot(:actions, required: true)
+
+  slot(:actions, required: true) do
+    attr(:align, :atom, values: [:left, :center, :right])
+  end
+
   attr(:for, :any, default: %{})
   attr(:as, :any, default: :form)
   attr(:event, :string, default: "save")
@@ -13,13 +17,11 @@ defmodule Palette.Components.Form do
     doc: "the arbitrary HTML attributes to apply to the form tag"
   )
 
-  def simple_form(assigns) do
-    assigns
-    |> xform()
-  end
+  def simple_form(%{actions: [actions]} = assigns) do
+    assigns =
+      assigns
+      |> assign(:actions_align, Map.get(actions, :align, :right))
 
-  @deprecated "Use simple_form/1 instead"
-  def xform(assigns) do
     ~H"""
     <div class="px-4 py-4 sm:px-5">
       <.form
@@ -33,7 +35,7 @@ defmodule Palette.Components.Form do
       >
         <div class="space-y-4">
           <%= render_slot(@inner_block, f) %>
-          <div class="space-x-2 text-right">
+          <div class={"space-x-2 text-#{@actions_align}"}>
             <%= render_slot(@actions, f) %>
           </div>
         </div>
@@ -57,12 +59,12 @@ defmodule Palette.Components.Form do
 
   def cancel_button(assigns) do
     ~H"""
-    <a
-      href={@cancel_url}
+    <.link
+      navigate={@cancel_url}
       class="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
     >
       <%= @label %>
-    </a>
+    </.link>
     """
   end
 

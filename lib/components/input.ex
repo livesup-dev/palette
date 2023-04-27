@@ -6,16 +6,21 @@ defmodule Palette.Components.Input do
   attr(:value, :string, default: nil)
   attr(:required, :boolean, default: false)
   attr(:placeholder, :string, default: "")
+  attr(:class, :string, default: "")
   attr(:rest, :global)
   attr(:errors, :list, default: [])
 
-  def text(assigns) do
+  def text(%{class: class} = assigns) do
     assigns =
       with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
         assigns
         |> assign(:value, field.value)
         |> assign(:errors, field.errors)
       end
+      |> assign(
+        :class,
+        "form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent #{class}"
+      )
 
     ~H"""
     <label for={@name} class="block">
@@ -27,6 +32,50 @@ defmodule Palette.Components.Input do
         name={@name}
         id={@name}
         placeholder={@placeholder}
+        class={@class}
+        {@rest}
+      />
+      <Palette.Components.Input.error :for={msg <- @errors}>
+        <%= msg %>
+      </Palette.Components.Input.error>
+    </label>
+    """
+  end
+
+  attr(:label, :string, required: true)
+  attr(:name, :string, required: true)
+  attr(:value, :string, default: nil)
+  attr(:required, :boolean, default: false)
+  attr(:placeholder, :string, default: "")
+  attr(:rest, :global)
+  attr(:errors, :list, default: [])
+
+  @spec datepicker(map) :: Phoenix.LiveView.Rendered.t()
+  def datepicker(assigns) do
+    assigns =
+      with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
+        assigns
+        |> assign(:value, field.value)
+        |> assign(:errors, field.errors)
+      end
+
+    ~H"""
+    <label
+      id={"pick-#{@name}"}
+      for={@name}
+      class="block flatpickr"
+      phx-update="ignore"
+      phx-hook="Pickr"
+    >
+      <span><%= @label %><span :if={@required}>*</span></span>
+      <input
+        required={@required}
+        type="text"
+        value={@value}
+        name={@name}
+        id={@name}
+        placeholder={@placeholder}
+        data-input
         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
         {@rest}
       />

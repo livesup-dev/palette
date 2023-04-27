@@ -11615,6 +11615,28 @@ code.inline-code {
   height: 1.25rem;
 }
 
+.hero-exclamation-circle-mini {
+  --hero-exclamation-circle-mini: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>');
+  -webkit-mask: var(--hero-exclamation-circle-mini);
+  mask: var(--hero-exclamation-circle-mini);
+  background-color: currentColor;
+  vertical-align: middle;
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.hero-arrow-left-solid {
+  --hero-arrow-left-solid: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">  <path fill-rule="evenodd" d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z" clip-rule="evenodd"/></svg>');
+  -webkit-mask: var(--hero-arrow-left-solid);
+  mask: var(--hero-arrow-left-solid);
+  background-color: currentColor;
+  vertical-align: middle;
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 .card {
   position: relative;
   display: flex;
@@ -14555,6 +14577,11 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   margin-right: -0.75rem;
 }
 
+.-my-4 {
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+}
+
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -14627,6 +14654,14 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .mt-0\.5 {
   margin-top: 0.125rem;
+}
+
+.mt-16 {
+  margin-top: 4rem;
+}
+
+.mt-14 {
+  margin-top: 3.5rem;
 }
 
 .mr-2 {
@@ -14871,6 +14906,10 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .w-48 {
   width: 12rem;
+}
+
+.w-1\/4 {
+  width: 25%;
 }
 
 .w-2\/3 {
@@ -15205,6 +15244,16 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+}
+
+.divide-zinc-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #f4f4f5;
 }
 
 .overflow-auto {
@@ -15834,12 +15883,24 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   color: #facc15;
 }
 
+.text-rose-600 {
+  color: #e11d48;
+}
+
 .text-zinc-800 {
   color: #27272a;
 }
 
-.text-rose-600 {
-  color: #e11d48;
+.text-zinc-900 {
+  color: #18181b;
+}
+
+.text-zinc-500 {
+  color: #71717a;
+}
+
+.text-zinc-700 {
+  color: #3f3f46;
 }
 
 .text-gray-200 {
@@ -16677,6 +16738,10 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   color: #4338ca;
 }
 
+.hover\:text-zinc-700:hover {
+  color: #3f3f46;
+}
+
 .hover\:text-primary:hover {
   color: #4f46e5;
 }
@@ -17331,6 +17396,10 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
   .sm\:items-center {
     align-items: center;
+  }
+
+  .sm\:gap-8 {
+    gap: 2rem;
   }
 
   .sm\:gap-5 {
