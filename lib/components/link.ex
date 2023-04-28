@@ -40,7 +40,7 @@ defmodule Palette.Components.Link do
   end
 
   attr(:path, :string, required: true)
-  attr(:type, :atom, default: :patch)
+  attr(:type, :atom, default: :patch, values: [:patch, :navigate])
   attr(:rest, :global)
   attr(:permission, :string, default: "")
   attr(:permissions, :any, default: [])

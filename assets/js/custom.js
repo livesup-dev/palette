@@ -21,7 +21,6 @@ import ApexCharts from "apexcharts";
 
 //  Forms Libraries
 import "@kingshott/iodine"; // @see https://github.com/mattkingshott/iodine
-import flatpickr from "flatpickr"; // @see https://flatpickr.js.org/
 
 // Helper Functions
 import * as helpers from "./utils/helpers";
@@ -47,7 +46,6 @@ import clipboard from "./magics/clipboard";
 
 window.SimpleBar = SimpleBar;
 window.ApexCharts = ApexCharts;
-window.flatpickr = flatpickr;
 
 window.Alpine = Alpine;
 window.helpers = helpers;
