@@ -4,7 +4,7 @@ defmodule Palette.Components.ActionLink do
   attr(:path, :string, required: true)
   attr(:type, :atom, default: :patch, values: [:navigate, :patch])
   attr(:tooltip, :string, required: true)
-  attr(:icon, :atom, default: :add, values: [:add, :edit])
+  attr(:icon, :atom, default: :add, values: [:add, :edit, :delete])
   attr(:custom_icon, :string, default: nil)
   attr(:permission, :string, default: "")
   attr(:permissions, :any, default: [])
@@ -49,6 +49,7 @@ defmodule Palette.Components.ActionLink do
 
   def icon(:add), do: "fa-solid fa-circle-plus"
   def icon(:edit), do: "fa fa-edit"
+  def icon(:delete), do: "fa fa-trash-alt"
   def icon(custom) when is_binary(custom), do: custom
   def icon(_), do: nil
 end
