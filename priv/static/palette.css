@@ -15240,6 +15240,12 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
 }
 
+.-space-x-px > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(-1px * var(--tw-space-x-reverse));
+  margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse)));
+}
+
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
@@ -16627,6 +16633,10 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   background-color: #ff5724;
 }
 
+.hover\:z-10:hover {
+  z-index: 10;
+}
+
 .hover\:rotate-\[360deg\]:hover {
   --tw-rotate: 360deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -16702,16 +16712,16 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   background-color: #f03000;
 }
 
-.hover\:bg-slate-150:hover {
-  background-color: #E9EEF5;
-}
-
 .hover\:bg-info\/20:hover {
   background-color: rgb(14 165 233 / 0.2);
 }
 
 .hover\:bg-error\/20:hover {
   background-color: rgb(255 87 36 / 0.2);
+}
+
+.hover\:bg-slate-150:hover {
+  background-color: #E9EEF5;
 }
 
 .hover\:bg-gray-100:hover {
@@ -16759,6 +16769,10 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .hover\:ring-slate-300:hover {
   --tw-ring-color: #cbd5e1;
+}
+
+.focus\:z-10:focus {
+  z-index: 10;
 }
 
 .focus\:w-full:focus {
@@ -16837,16 +16851,16 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   background-color: #f03000;
 }
 
-.focus\:bg-slate-150:focus {
-  background-color: #E9EEF5;
-}
-
 .focus\:bg-info\/20:focus {
   background-color: rgb(14 165 233 / 0.2);
 }
 
 .focus\:bg-error\/20:focus {
   background-color: rgb(255 87 36 / 0.2);
+}
+
+.focus\:bg-slate-150:focus {
+  background-color: #E9EEF5;
 }
 
 .focus\:bg-primary\/20:focus {
@@ -16943,16 +16957,16 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   background-color: rgb(240 48 0 / 0.9);
 }
 
-.active\:bg-slate-150\/80:active {
-  background-color: rgb(233 238 245 / 0.8);
-}
-
 .active\:bg-info\/25:active {
   background-color: rgb(14 165 233 / 0.25);
 }
 
 .active\:bg-error\/25:active {
   background-color: rgb(255 87 36 / 0.25);
+}
+
+.active\:bg-slate-150\/80:active {
+  background-color: rgb(233 238 245 / 0.8);
 }
 
 .active\:bg-primary\/25:active {

@@ -14,6 +14,7 @@ defmodule Palette.Components.Select do
   attr(:name, :any)
   attr(:value, :any, default: nil)
   attr(:label, :string, default: nil)
+  attr(:required, :boolean, default: false)
   attr(:prompt, :string, default: nil, doc: "the prompt for select inputs")
   attr(:entities, :list, default: nil, doc: "a list of structs to convert to options")
   attr(:options, :list, doc: "the options to pass to Phoenix.HTML.Form.options_for_select/2")
@@ -45,7 +46,7 @@ defmodule Palette.Components.Select do
   def _do_select(assigns) do
     ~H"""
     <div phx-feedback-for={@name}>
-      <Palette.Components.Label.label for={@id}><%= @label %></Palette.Components.Label.label>
+      <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
       <select
         id={@id}
         name={@name}
