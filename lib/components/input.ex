@@ -24,7 +24,7 @@ defmodule Palette.Components.Input do
 
     ~H"""
     <label for={@name} class="block">
-      <span><%= @label %><span :if={@required}>*</span></span>
+      <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
       <input
         required={@required}
         type="text"
@@ -39,6 +39,53 @@ defmodule Palette.Components.Input do
         <%= msg %>
       </Palette.Components.Input.error>
     </label>
+    """
+  end
+
+  attr(:label, :string, required: true)
+  attr(:name, :string, required: true)
+  attr(:value, :string, default: nil)
+  attr(:required, :boolean, default: false)
+  attr(:placeholder, :string, default: "")
+  attr(:class, :string, default: "")
+  attr(:rest, :global)
+  attr(:errors, :list, default: [])
+  slot(:sufix, required: true)
+
+  def input_group(%{class: class} = assigns) do
+    assigns =
+      with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
+        assigns
+        |> assign(:value, field.value)
+        |> assign(:errors, field.errors)
+      end
+      |> assign(
+        :class,
+        "form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent #{class}"
+      )
+
+    ~H"""
+    <div>
+      <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
+      <label for={@name} class="mt-1.5 flex -space-x-px">
+        <input
+          required={@required}
+          type="text"
+          value={@value}
+          name={@name}
+          id={@name}
+          placeholder={@placeholder}
+          class={@class}
+          {@rest}
+        />
+        <span class="flex items-center justify-center rounded-r-lg border border-slate-300 px-3.5 font-inter dark:border-navy-450">
+          <%= render_slot(@sufix) %>
+        </span>
+      </label>
+      <Palette.Components.Input.error :for={msg <- @errors}>
+        <%= msg %>
+      </Palette.Components.Input.error>
+    </div>
     """
   end
 
@@ -67,7 +114,7 @@ defmodule Palette.Components.Input do
       phx-update="ignore"
       phx-hook="Pickr"
     >
-      <span><%= @label %><span :if={@required}>*</span></span>
+      <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
       <input
         required={@required}
         type="text"
@@ -116,7 +163,7 @@ defmodule Palette.Components.Input do
     ~H"""
     <label class="block">
       <span>
-        <%= @label %><span :if={@required}>*</span>
+        <%= @label %><span :if={@required} class="ml-1">*</span>
       </span>
       <textarea
         required={@required}
