@@ -8,7 +8,7 @@ defmodule Palette.Components.Form do
   end
 
   attr(:for, :any, default: %{})
-  attr(:as, :any, default: :form)
+  attr(:as, :atom, default: :form)
   attr(:event, :string, default: "save")
   attr(:target, :map, default: nil)
 

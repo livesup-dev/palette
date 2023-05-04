@@ -4,6 +4,7 @@ defmodule Palette.Components.Input do
   attr(:label, :string, required: true)
   attr(:name, :string, required: true)
   attr(:value, :string, default: nil)
+  attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:required, :boolean, default: false)
   attr(:placeholder, :string, default: "")
   attr(:class, :string, default: "")
@@ -12,11 +13,8 @@ defmodule Palette.Components.Input do
 
   def text(%{class: class} = assigns) do
     assigns =
-      with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
-        assigns
-        |> assign(:value, field.value)
-        |> assign(:errors, field.errors)
-      end
+      assigns
+      |> assign_basic_attrs()
       |> assign(
         :class,
         "form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent #{class}"
@@ -54,11 +52,8 @@ defmodule Palette.Components.Input do
 
   def input_group(%{class: class} = assigns) do
     assigns =
-      with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
-        assigns
-        |> assign(:value, field.value)
-        |> assign(:errors, field.errors)
-      end
+      assigns
+      |> assign_basic_attrs()
       |> assign(
         :class,
         "form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent #{class}"
@@ -92,19 +87,14 @@ defmodule Palette.Components.Input do
   attr(:label, :string, required: true)
   attr(:name, :string, required: true)
   attr(:value, :string, default: nil)
+  attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:required, :boolean, default: false)
   attr(:placeholder, :string, default: "")
   attr(:rest, :global)
   attr(:errors, :list, default: [])
 
-  @spec datepicker(map) :: Phoenix.LiveView.Rendered.t()
   def datepicker(assigns) do
-    assigns =
-      with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
-        assigns
-        |> assign(:value, field.value)
-        |> assign(:errors, field.errors)
-      end
+    assigns = assigns |> assign_basic_attrs()
 
     ~H"""
     <label
@@ -136,8 +126,11 @@ defmodule Palette.Components.Input do
   attr(:name, :string, required: true)
   attr(:value, :string, default: nil)
   attr(:rest, :global)
+  attr(:field, Phoenix.HTML.FormField, default: nil)
 
   def hidden_input(assigns) do
+    assigns = assigns |> assign_basic_attrs()
+
     ~H"""
     <input type="hidden" value={@value} name={@name} id={@name} {@rest} />
     """
@@ -146,6 +139,7 @@ defmodule Palette.Components.Input do
   attr(:label, :string, required: true)
   attr(:name, :string, required: true)
   attr(:value, :string, default: nil)
+  attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:placeholder, :string, default: "")
   attr(:rows, :integer, default: 4)
   attr(:required, :boolean, default: false)
@@ -153,12 +147,7 @@ defmodule Palette.Components.Input do
   attr(:errors, :list, default: [])
 
   def textarea(assigns) do
-    assigns =
-      with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
-        assigns
-        |> assign(:value, field.value)
-        |> assign(:errors, field.errors)
-      end
+    assigns = assigns |> assign_basic_attrs()
 
     ~H"""
     <label class="block">
@@ -196,5 +185,21 @@ defmodule Palette.Components.Input do
       <%= render_slot(@inner_block) %>
     </p>
     """
+  end
+
+  defp assign_basic_attrs(%{field: nil} = assigns) do
+    with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
+      assigns
+      |> assign(:name, field.name)
+      |> assign(:value, field.value)
+      |> assign(:errors, field.errors)
+    end
+  end
+
+  defp assign_basic_attrs(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+    assigns
+    |> assign(:name, field.name)
+    |> assign(:value, field.value)
+    |> assign(:errors, field.errors)
   end
 end
