@@ -1,8 +1,9 @@
 import "./custom.js";
-import ApexChartHook from "./apexChartHook";
+import ApexChartHook from "./hooks/apex_chart_hook";
 import Editor from "./hooks/editor";
 import GoogleMaps from "./hooks/google_maps";
 import Pickr from "./hooks/pickr"
+import Drag from "./hooks/drag_hook"
 
 import "phoenix_html";
 import { Socket } from "phoenix";
@@ -13,7 +14,8 @@ let Hooks = {
   ApexChartHook,
   Editor,
   GoogleMaps,
-  Pickr
+  Pickr,
+  Drag
 };
 
 // Show progress bar on live navigation and form submits

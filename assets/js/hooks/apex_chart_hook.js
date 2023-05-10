@@ -1,4 +1,4 @@
-import { getAttributeOrThrow } from "./lib/attribute";
+import { getAttributeOrThrow } from "../lib/attribute";
 import ApexCharts from "apexcharts";
 
 export default {
