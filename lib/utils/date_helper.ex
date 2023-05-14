@@ -32,6 +32,8 @@ defmodule Palette.Utils.DateHelper do
       String.contains?(str_date, "days ago") -> String.replace(str_date, " days ago", "d")
       String.contains?(str_date, "month ago") -> String.replace(str_date, " month ago", "mo")
       String.contains?(str_date, "months ago") -> String.replace(str_date, " months ago", "mo")
+      String.contains?(str_date, "year ago") -> String.replace(str_date, " year ago", "mo")
+      String.contains?(str_date, "years ago") -> String.replace(str_date, " years ago", "mo")
       true -> str_date
     end
   end
