@@ -2,7 +2,7 @@ defmodule Palette.Components.Input do
   use Phoenix.Component
 
   attr(:label, :string, required: true)
-  attr(:name, :string, required: true)
+  attr(:name, :string, default: nil)
   attr(:value, :string, default: nil)
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:required, :boolean, default: false)
@@ -123,7 +123,7 @@ defmodule Palette.Components.Input do
     """
   end
 
-  attr(:name, :string, required: true)
+  attr(:name, :string, default: nil)
   attr(:value, :string, default: nil)
   attr(:rest, :global)
   attr(:field, Phoenix.HTML.FormField, default: nil)
@@ -137,7 +137,7 @@ defmodule Palette.Components.Input do
   end
 
   attr(:label, :string, required: true)
-  attr(:name, :string, required: true)
+  attr(:name, :string, default: nil)
   attr(:value, :string, default: nil)
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:placeholder, :string, default: "")

@@ -1,5 +1,6 @@
 import ace from "brace"
 import "brace/mode/html"
+import "brace/mode/yaml"
 import "brace/theme/pastel_on_dark"
 import "brace/ext/searchbox"
 

@@ -8,6 +8,7 @@ defmodule Palette.Components.Card do
   attr(:title, :string, default: nil)
   attr(:description, :string, default: nil)
   attr(:class, :string, default: "")
+  attr(:id, :string, default: nil)
 
   attr(:title_class, :string,
     default: "font-medium tracking-wide text-slate-700 dark:text-navy-100"
@@ -21,7 +22,7 @@ defmodule Palette.Components.Card do
       |> assign(:class, "#{class(color)} #{class}")
 
     ~H"""
-    <div class={@class}>
+    <div class={@class} id={@id}>
       <div :if={@title} class="my-3 flex h-8 items-center justify-between">
         <h2 class={@title_class}>
           <%= @title %>

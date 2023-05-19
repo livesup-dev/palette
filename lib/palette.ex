@@ -52,6 +52,7 @@ defmodule Palette do
         Sidebar.MainItem,
         Sidebar.Panel,
         SideNav,
+        SyntaxHighlighter,
         Table,
         Html
       }
