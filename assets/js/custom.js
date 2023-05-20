@@ -35,6 +35,7 @@ import breakpoints from "./utils/breakpoints";
 import usePopper from "./components/usePopper";
 import accordionItem from "./components/accordionItem";
 import navLink from "./components/navLink";
+import "./components/tomSelect";
 
 // Alpine Directives
 import tooltip from "./directives/tooltip";
