@@ -4,7 +4,7 @@ defmodule Palette.Components.Editor do
   alias Palette.Components.Input
 
   attr(:value, :string, required: true)
-  attr(:mode, :atom, default: :html, values: [:html])
+  attr(:mode, :atom, default: :html, values: [:html, :yaml])
   attr(:name, :string, default: "editor-content")
 
   @spec editor(map) :: Phoenix.LiveView.Rendered.t()
