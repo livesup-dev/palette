@@ -9,7 +9,7 @@ defmodule Palette.Components.FavoriteTest do
   describe "favorite/1" do
     test "favorite/1 will render properly", %{assigns: assigns} do
       h = ~H(<.favorite />)
-      assert rendered_to_string(h) =~ ~s(<i class=\"fa-regular fa-star\"></i>)
+      assert rendered_to_string(h) =~ ~s(<i class=\"fa-regular fa-star fa-xl\"></i>)
     end
   end
 end
