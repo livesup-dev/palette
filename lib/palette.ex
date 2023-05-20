@@ -23,8 +23,6 @@ defmodule Palette do
         Editor,
         ErrorPage,
         Field,
-        Footer,
-        FooterScripts,
         Form,
         FromNow,
         Head,
