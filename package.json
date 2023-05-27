@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "description": "Palette assets",
   "main": "priv/static/palette.js",
-  "style": "priv/static/palette.css"
+  "style": "priv/static/palette.css",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9"
+  }
 }
