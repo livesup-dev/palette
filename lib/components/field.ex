@@ -55,7 +55,9 @@ defmodule Palette.Components.Field do
       |> assign(:markdown, StringHelper.markdown_to_html(value || empty_value))
 
     ~H"""
-    <%= Phoenix.HTML.raw(@markdown) %>
+    <div class="prose">
+      <%= Phoenix.HTML.raw(@markdown) %>
+    </div>
     """
   end
 end
