@@ -156,7 +156,6 @@ module.exports = {
         { values }
       );
     }),
-    require("@tailwindcss/line-clamp"),
     function ({ addVariant }) {
       addVariant(
         "supports-backdrop",

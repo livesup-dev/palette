@@ -27,6 +27,8 @@ defmodule Palette.Components.Modal do
   attr(:show, :boolean, default: false)
   attr(:on_cancel, JS, default: %JS{})
   attr(:width, :atom, default: :small, values: [:small, :medium, :large])
+  attr(:height, :atom, default: nil, values: [:small, :medium, :large, :full, :screen, nil])
+  attr(:class, :string, default: "overflow-y-auto")
   attr(:return_to, :string, default: nil)
   slot(:inner_block, required: true)
 
@@ -35,6 +37,7 @@ defmodule Palette.Components.Modal do
       assigns
       |> assign(:on_cancel, on_cancel(assigns))
       |> assign_width_class()
+      |> assign_height_class()
 
     ~H"""
     <div
@@ -50,14 +53,15 @@ defmodule Palette.Components.Modal do
         aria-hidden="true"
       />
       <div
-        class={"relative overflow-y-auto #{@width_class} origin-top rounded-lg bg-white transition-all duration-300 dark:bg-navy-700"}
+        class={"relative origin-top rounded-lg bg-white transition-all duration-300 dark:bg-navy-700  #{@height_class} #{@width_class} #{@class} "}
         aria-labelledby={"#{@id}-title"}
         aria-describedby={"#{@id}-description"}
         role="dialog"
         aria-modal="true"
         tabindex="0"
       >
-        <div class="flex justify-between rounded-t-lg border-b border-slate-200 px-4 py-3 dark:border-navy-600 sm:px-5">
+        <!--Modal title-->
+        <div class={"flex justify-between rounded-t-lg border-b border-slate-200 px-4 py-3 dark:border-navy-600 sm:px-5 #{@title_class}"}>
           <h3 class="text-base font-medium text-slate-700 dark:text-navy-100">
             <%= @title %>
           </h3>
@@ -69,17 +73,22 @@ defmodule Palette.Components.Modal do
             <Icon.icon name="hero-x-mark-solid" class="h-5 w-5" />
           </button>
         </div>
+        <!--/Modal title-->
+        <!--Modal body-->
         <.focus_wrap
           id={"#{@id}-container"}
           phx-window-keydown={JS.exec("data-cancel", to: "##{@id}")}
           phx-key="escape"
           phx-click-away={JS.exec("data-cancel", to: "##{@id}")}
-          class="px-4 py-4 sm:px-5"
+          class={"px-4 py-4 sm:px-5 #{@container_class}"}
         >
           <div id={"#{@id}-content"}>
             <%= render_slot(@inner_block) %>
           </div>
         </.focus_wrap>
+        <!--/Modal body-->
+        <!--Modal footer-->
+        <!--/Modal footer-->
       </div>
     </div>
     """
@@ -249,5 +258,34 @@ defmodule Palette.Components.Modal do
 
     assigns
     |> assign(:width_class, class)
+  end
+
+  def assign_height_class(%{height: height} = assigns) do
+    class =
+      case height do
+        :small -> "h-1/3"
+        :medium -> "h-2/3"
+        :large -> "h-3/4"
+        :full -> "h-full max-h-lg"
+        :screen -> "h-[100vh]"
+        _ -> ""
+      end
+
+    title_class =
+      case height do
+        :screen -> "h-12  h-[calc(100vh-(100vh-theme('spacing.12')))]"
+        _ -> ""
+      end
+
+    container_class =
+      case height do
+        :screen -> "h-[calc(100vh-theme('spacing.12'))]"
+        _ -> ""
+      end
+
+    assigns
+    |> assign(:height_class, class)
+    |> assign(:title_class, title_class)
+    |> assign(:container_class, container_class)
   end
 end

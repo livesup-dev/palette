@@ -16,7 +16,7 @@ defmodule Palette.Components.Button do
   )
 
   def button(%{color: color, class: custom_class, disabled: disabled} = assigns) do
-    full_class = "#{custom_class} #{class(color, disabled)}"
+    full_class = "#{class(color, disabled)} #{custom_class}"
 
     assigns =
       assigns
