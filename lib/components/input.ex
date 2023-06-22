@@ -1,5 +1,6 @@
 defmodule Palette.Components.Input do
   use Phoenix.Component
+  import Palette.Components.FieldHelper
 
   attr(:label, :string, required: true)
   attr(:name, :string, default: nil)
@@ -186,21 +187,5 @@ defmodule Palette.Components.Input do
       <%= render_slot(@inner_block) %>
     </p>
     """
-  end
-
-  defp assign_basic_attrs(%{field: nil} = assigns) do
-    with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
-      assigns
-      |> assign(:name, field.name)
-      |> assign(:value, field.value)
-      |> assign(:errors, field.errors)
-    end
-  end
-
-  defp assign_basic_attrs(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
-    assigns
-    |> assign(:name, field.name)
-    |> assign(:value, field.value)
-    |> assign(:errors, field.errors)
   end
 end

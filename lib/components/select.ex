@@ -1,6 +1,7 @@
 defmodule Palette.Components.Select do
   use Phoenix.Component
   use Phoenix.HTML
+  import Palette.Components.FieldHelper
 
   @doc """
   Renders a list of select input options with the given one selected.
@@ -13,6 +14,7 @@ defmodule Palette.Components.Select do
   attr(:id, :any)
   attr(:name, :any)
   attr(:value, :any, default: nil)
+  attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:label, :string, default: nil)
   attr(:required, :boolean, default: false)
   attr(:prompt, :string, default: nil, doc: "the prompt for select inputs")
@@ -31,19 +33,14 @@ defmodule Palette.Components.Select do
   def select(%{entities: entities} = assigns) do
     options = Enum.map(entities, fn entity -> [key: entity.name, value: entity.id] end)
 
-    assigns =
-      with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
-        assigns
-        |> assign(:value, field.value)
-        |> assign(:errors, field.errors)
-      end
-
     assigns
     |> assign(:options, options)
     |> _do_select()
   end
 
   def _do_select(assigns) do
+    assigns = assigns |> assign_basic_attrs()
+
     ~H"""
     <div phx-feedback-for={@name}>
       <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
