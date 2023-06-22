@@ -44,6 +44,7 @@ defmodule Palette.Components.Input do
   attr(:name, :string, required: true)
   attr(:value, :string, default: nil)
   attr(:required, :boolean, default: false)
+  attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:placeholder, :string, default: "")
   attr(:class, :string, default: "")
   attr(:rest, :global)
