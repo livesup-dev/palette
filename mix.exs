@@ -44,7 +44,8 @@ defmodule Palette.MixProject do
 
       # Assets bundling
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
-      {:esbuild, "~> 0.5", runtime: Mix.env() == :dev}
+      {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
+      {:inflex, "~> 2.0.0"}
     ]
   end
 

@@ -39,6 +39,10 @@ defmodule Palette.Utils.StringHelper do
     for {key, val} <- map, into: %{}, do: {convert_to_atom(key), val}
   end
 
+  def keys_to_pascal_case(map) do
+    for {key, val} <- map, into: %{}, do: {Inflex.camelize(key, :lower), val}
+  end
+
   def markdown_to_html(nil), do: ""
 
   def markdown_to_html(text) do
