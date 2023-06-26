@@ -22,23 +22,32 @@ defmodule Palette.Components.Checkbox do
     |> do_render_check()
   end
 
-  defp do_render_check(%{color: color, class: custom_class, type: type} = assigns) do
+  defp do_render_check(%{color: color, class: custom_class, type: type, value: value} = assigns) do
     full_class = "#{custom_class} #{class(color, type)}"
 
     assigns =
       assigns
       |> assign_basic_attrs()
+      |> assign(:checked, normalize_value(value))
       |> assign(:class, full_class)
 
     ~H"""
     <label class="inline-flex items-center space-x-2">
-      <input type="checkbox" value={@value} name={@name} class={@class} {@rest} checked={@checked} />
+      <input type="checkbox" value="true" name={@name} class={@class} checked={@checked} {@rest} />
       <p><%= @label %></p>
       <Palette.Components.Input.error :for={msg <- @errors}>
         <%= msg %>
       </Palette.Components.Input.error>
     </label>
     """
+  end
+
+  defp normalize_value(%Phoenix.HTML.FormField{value: value}), do: normalize_value(value)
+
+  defp normalize_value(true), do: true
+
+  defp normalize_value(value) do
+    Phoenix.HTML.Form.normalize_value("checkbox", value)
   end
 
   defp class(:default, :outline_circle),
