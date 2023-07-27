@@ -41,6 +41,10 @@ defmodule Palette.Auth.Restricter do
     do_render(implementation, fnc_name, assigns, can)
   end
 
+  def do_render(implementation, fnc_name, assigns) do
+    apply(implementation, fnc_name, [assigns])
+  end
+
   def do_render(implementation, fnc_name, assigns, true) do
     apply(implementation, fnc_name, [assigns])
   end
@@ -49,9 +53,5 @@ defmodule Palette.Auth.Restricter do
     ~H"""
 
     """
-  end
-
-  def do_render(implementation, fnc_name, assigns) do
-    apply(implementation, fnc_name, [assigns])
   end
 end

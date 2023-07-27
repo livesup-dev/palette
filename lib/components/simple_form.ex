@@ -1,4 +1,8 @@
 defmodule Palette.Components.Form do
+  @moduledoc """
+  A simple form component that wraps a form tag and provides a default layout
+  """
+
   use Phoenix.Component
 
   slot(:inner_block, required: true)
@@ -17,6 +21,13 @@ defmodule Palette.Components.Form do
     doc: "the arbitrary HTML attributes to apply to the form tag"
   )
 
+  @doc """
+  Renders a simple form with a default layout.
+
+  ## Examples
+
+      <.simple_form>
+  """
   def simple_form(%{actions: [actions]} = assigns) do
     assigns =
       assigns
