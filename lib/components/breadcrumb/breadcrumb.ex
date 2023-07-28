@@ -1,10 +1,6 @@
 defmodule Palette.Components.Breadcrumb do
   use Phoenix.Component
 
-  defmodule Step do
-    defstruct [:label, :path]
-  end
-
   attr(:title, :string, required: true)
   attr(:steps, :list, required: true)
 
