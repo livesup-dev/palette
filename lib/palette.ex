@@ -54,6 +54,7 @@ defmodule Palette do
         SideNav,
         Spinner,
         SyntaxHighlighter,
+        Switch,
         Table,
         Html
       }

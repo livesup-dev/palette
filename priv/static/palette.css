@@ -17345,6 +17345,11 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   color: #64748b;
 }
 
+.before\:rounded-full::before {
+  content: var(--tw-content);
+  border-radius: 9999px;
+}
+
 .before\:\!bg-error::before {
   content: var(--tw-content);
   background-color: #ff5724 !important;
@@ -17373,6 +17378,11 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 .before\:bg-secondary::before {
   content: var(--tw-content);
   background-color: #f000b9;
+}
+
+.before\:bg-slate-50::before {
+  content: var(--tw-content);
+  background-color: #f8fafc;
 }
 
 .before\:bg-slate-500::before {
@@ -17408,6 +17418,22 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   border-color: #64748b;
 }
 
+.checked\:\!bg-error:checked {
+  background-color: #ff5724 !important;
+}
+
+.checked\:\!bg-info:checked {
+  background-color: #0ea5e9 !important;
+}
+
+.checked\:\!bg-success:checked {
+  background-color: #10b981 !important;
+}
+
+.checked\:\!bg-warning:checked {
+  background-color: #ff9800 !important;
+}
+
 .checked\:bg-error:checked {
   background-color: #ff5724;
 }
@@ -17434,6 +17460,11 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .checked\:bg-warning:checked {
   background-color: #ff9800;
+}
+
+.checked\:before\:bg-white:checked::before {
+  content: var(--tw-content);
+  background-color: #fff;
 }
 
 .hover\:z-10:hover {
@@ -18022,6 +18053,11 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   background-color: #a3adc2;
 }
 
+.dark .dark\:before\:bg-navy-300::before {
+  content: var(--tw-content);
+  background-color: #697a9b;
+}
+
 .dark .dark\:before\:bg-secondary-light::before {
   content: var(--tw-content);
   background-color: #ff57d8;
@@ -18049,6 +18085,11 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .dark .dark\:checked\:bg-secondary-light:checked {
   background-color: #ff57d8;
+}
+
+.dark .dark\:checked\:before\:bg-white:checked::before {
+  content: var(--tw-content);
+  background-color: #fff;
 }
 
 .dark .dark\:hover\:border-accent:hover {
