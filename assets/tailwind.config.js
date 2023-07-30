@@ -43,6 +43,12 @@ const customColors = {
 module.exports = {
   content: ["./js/**/*.{js,ts}", "../lib/components/**/*.*ex"],
   darkMode: "class",
+  safelist: [
+    'h-20',
+    'h-24',
+    'w-20',
+    'w-24',
+  ],
   theme: {
     extend: {
       fontFamily: {
