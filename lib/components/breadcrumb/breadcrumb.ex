@@ -3,6 +3,7 @@ defmodule Palette.Components.Breadcrumb do
 
   attr(:title, :string, required: true)
   attr(:steps, :list, required: true)
+  attr(:border, :boolean, default: false)
 
   slot(:actions, doc: "Add action")
 
@@ -14,6 +15,7 @@ defmodule Palette.Components.Breadcrumb do
     assigns
     |> assign(:last, last)
     |> assign(:steps, steps)
+    |> assign(:border_class, border(assigns.border))
     |> render()
   end
 
@@ -31,12 +33,14 @@ defmodule Palette.Components.Breadcrumb do
           <li :for={step <- @steps} class="flex items-center space-x-2">
             <.link
               :if={step.path}
-              class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+              class={"#{@border_class} flex items-center space-x-1.5 text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"}
               navigate={step.path}
             >
+              <i :if={step.icon} class={step.icon}></i>
               <%= step.label %>
             </.link>
 
+            <i :if={is_nil(step.path) && step.icon} class={step.icon}></i>
             <span :if={is_nil(step.path)}><%= step.label %></span>
 
             <svg
@@ -50,7 +54,12 @@ defmodule Palette.Components.Breadcrumb do
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </li>
-          <li><%= @last.label %></li>
+          <li>
+            <div class="flex items-center space-x-1.5">
+              <i :if={@last.icon} class={@last.icon}></i>
+              <%= @last.label %>
+            </div>
+          </li>
         </ul>
       </div>
 
@@ -62,4 +71,10 @@ defmodule Palette.Components.Breadcrumb do
     </div>
     """
   end
+
+  defp border(true),
+    do:
+      "flex items-center space-x-1.5 rounded-lg border border-slate-200 py-1 px-1.5 leading-none "
+
+  defp border(false), do: ""
 end

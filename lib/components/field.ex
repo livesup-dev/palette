@@ -48,6 +48,7 @@ defmodule Palette.Components.Field do
 
   attr(:value, :string, required: true)
   attr(:empty_value, :string, default: "")
+  attr(:class, :string, default: "prose prose-sm dark:prose-invert")
 
   def markdown_field(%{value: value, empty_value: empty_value} = assigns) do
     assigns =
@@ -55,7 +56,7 @@ defmodule Palette.Components.Field do
       |> assign(:markdown, StringHelper.markdown_to_html(value || empty_value))
 
     ~H"""
-    <div class="prose">
+    <div class={"#{@class}"}>
       <%= Phoenix.HTML.raw(@markdown) %>
     </div>
     """

@@ -10,16 +10,15 @@ defmodule Palette.Components.Card do
   attr(:class, :string, default: "")
   attr(:id, :string, default: nil)
 
-  attr(:title_class, :string,
-    default: "font-medium tracking-wide text-slate-700 dark:text-navy-100"
-  )
+  attr(:title_class, :string, default: "text-lg font-medium tracking-wide line-clamp-1")
 
   slot(:inner_block, required: false)
 
-  def card(%{color: color, class: class} = assigns) do
+  def card(%{color: color, class: class, title_class: title_class} = assigns) do
     assigns =
       assigns
       |> assign(:class, "#{class(color)} #{class}")
+      |> assign(:title_class, "#{title_class} #{title_class(color)}")
 
     ~H"""
     <div class={@class} id={@id}>
@@ -37,6 +36,9 @@ defmodule Palette.Components.Card do
     </div>
     """
   end
+
+  defp title_class(:default), do: "text-slate-700 dark:text-navy-100"
+  defp title_class(_), do: "text-white"
 
   attr(:title, :string, required: true)
   attr(:description, :string, default: "")

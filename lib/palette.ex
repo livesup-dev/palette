@@ -10,6 +10,8 @@ defmodule Palette do
         Alert,
         AppHeader,
         AppHeaderWrapper,
+        Avatars.Avatar,
+        Avatars.InitialAvatar,
         Badges.Badge,
         Badges.GlowBadge,
         Badges.RoundedBadge,
@@ -50,7 +52,9 @@ defmodule Palette do
         Sidebar.MainItem,
         Sidebar.Panel,
         SideNav,
+        Spinner,
         SyntaxHighlighter,
+        Switch,
         Table,
         Html
       }

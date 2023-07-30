@@ -1,3 +1,3 @@
 defmodule Palette.Components.Breadcrumb.Step do
-  defstruct [:label, :path]
+  defstruct [:label, :path, :icon]
 end
