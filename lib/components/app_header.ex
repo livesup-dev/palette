@@ -18,7 +18,7 @@ defmodule Palette.Components.AppHeader do
       <!-- Header Items -->
       <div class="flex w-full items-center justify-between">
         <!-- Left: Sidebar Toggle Button -->
-        <div class="h-7 w-7">
+        <div class="block md:hidden h-7 w-7">
           <button
             class="menu-toggle ml-0.5 flex h-7 w-7 flex-col justify-center space-y-1.5 text-primary outline-none focus:outline-none dark:text-accent-light/80"
             x-bind:class="$store.global.isSidebarExpanded && 'active'"
@@ -30,7 +30,7 @@ defmodule Palette.Components.AppHeader do
           </button>
         </div>
         <!-- Right: Header buttons -->
-        <div class="-mr-1.5 flex items-center space-x-2">
+        <div class="-mr-1.5 flex items-center space-x-2 md:ml-auto">
           <!-- Mobile Search Toggle -->
           <button
             @click="$store.global.isSearchbarActive = !$store.global.isSearchbarActive"

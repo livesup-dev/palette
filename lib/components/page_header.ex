@@ -21,10 +21,10 @@ defmodule Palette.Components.PageHeader do
     <div class="block justify-between items-center p-4 mt-2 mb-3 bg-white rounded-2xl shadow-md shadow-gray-200 lg:p-5 sm:flex">
       <div class="mb-1 w-full">
         <div class="mb-4">
-          <Breadcrumb.breadcrumb steps={@breadcrumb} title="asdf" />
-          <%= if @show_title do %>
+          <Breadcrumb.breadcrumb steps={@breadcrumb} title={@title} />
+          <%!-- <%= if @show_title do %>
             <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl"><%= @title %></h1>
-          <% end %>
+          <% end %> --%>
         </div>
         <div class="sm:flex">
           <%= if @show_search do %>
