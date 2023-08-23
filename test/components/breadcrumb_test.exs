@@ -7,7 +7,9 @@ defmodule Palette.Components.BreadcrumbTest do
 
   alias Palette.Components.Breadcrumb.Step
 
-  setup(do: [assigns: %{title: "Testing", steps: [%Step{label: "Home"}, %Step{label: "Another"}]}])
+  setup(
+    do: [assigns: %{title: "Testing", steps: [%Step{label: "Home"}, %Step{label: "Another"}]}]
+  )
 
   describe "breadcrumb/1" do
     test "breadcrumb will be render properly", %{assigns: assigns} do
