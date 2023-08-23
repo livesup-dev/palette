@@ -37,7 +37,7 @@ defmodule Palette.Components.Breadcrumb do
               navigate={step.path}
             >
               <i :if={step.icon} class={step.icon}></i>
-              <%= step.label %>
+              <%=step.label%>
             </.link>
 
             <i :if={is_nil(step.path) && step.icon} class={step.icon}></i>
@@ -57,7 +57,7 @@ defmodule Palette.Components.Breadcrumb do
           <li>
             <div class="flex items-center space-x-1.5">
               <i :if={@last.icon} class={@last.icon}></i>
-              <%= @last.label %>
+              <span><%= @last.label %></span>
             </div>
           </li>
         </ul>
