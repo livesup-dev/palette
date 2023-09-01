@@ -16782,13 +16782,6 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-sm {
-  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-soft {
   --tw-shadow: 0 3px 10px 0 rgb(48 46 56 / 6%);
   --tw-shadow-colored: 0 3px 10px 0 var(--tw-shadow-color);
@@ -17656,10 +17649,6 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   border-color: #64748b;
 }
 
-.focus\:border-zinc-500:focus {
-  border-color: #71717a;
-}
-
 .focus\:bg-error-focus:focus {
   background-color: #f03000;
 }
@@ -17770,10 +17759,6 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .focus\:ring-fuchsia-50:focus {
   --tw-ring-color: #fdf4ff;
-}
-
-.focus\:ring-zinc-500:focus {
-  --tw-ring-color: #71717a;
 }
 
 .active\:bg-error-focus\/90:active {
