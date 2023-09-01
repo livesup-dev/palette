@@ -1,8 +1,10 @@
 defmodule Palette.Components.Radio do
   use Phoenix.Component
+  import Palette.Components.FieldHelper
 
   attr(:name, :string, default: "")
   attr(:value, :string, default: nil)
+  attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:rest, :global)
   attr(:class, :string, default: "")
   attr(:label, :string, required: true)
@@ -19,10 +21,19 @@ defmodule Palette.Components.Radio do
     assigns =
       assigns
       |> assign(:class, full_class)
+      |> assign_basic_attrs()
 
     ~H"""
     <label class="inline-flex items-center space-x-2">
-      <input type="radio" value={@value} name={@name} class={@class} {@rest} checked={@checked} />
+      <input
+        type="radio"
+        name={@name}
+        id={@name}
+        class={@class}
+        value={Phoenix.HTML.Form.normalize_value("radio", @value)}
+        checked={@checked}
+        {@rest}
+      />
       <p><%= @label %></p>
     </label>
     """

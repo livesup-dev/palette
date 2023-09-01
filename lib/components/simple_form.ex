@@ -7,7 +7,7 @@ defmodule Palette.Components.Form do
 
   slot(:inner_block, required: true)
 
-  slot(:actions, required: true) do
+  slot(:actions, required: false) do
     attr(:align, :atom, values: [:left, :center, :right])
   end
 
@@ -28,11 +28,19 @@ defmodule Palette.Components.Form do
 
       <.simple_form>
   """
-  def simple_form(%{actions: [actions]} = assigns) do
-    assigns =
-      assigns
-      |> assign(:actions_align, Map.get(actions, :align, :right))
+  def simple_form(%{actions: []} = assigns) do
+    assigns
+    |> assign(:actions_align, :right)
+    |> do_simple_form()
+  end
 
+  def simple_form(%{actions: [actions]} = assigns) do
+    assigns
+    |> assign(:actions_align, Map.get(actions, :align, :right))
+    |> do_simple_form()
+  end
+
+  defp do_simple_form(assigns) do
     ~H"""
     <div class="px-4 py-4 sm:px-5">
       <.form
@@ -47,7 +55,7 @@ defmodule Palette.Components.Form do
         <div class="space-y-4">
           <%= render_slot(@inner_block, f) %>
           <div class={"space-x-2 text-#{@actions_align}"}>
-            <%= render_slot(@actions, f) %>
+            <%= render_slot(@actions || %{}, f) %>
           </div>
         </div>
       </.form>
