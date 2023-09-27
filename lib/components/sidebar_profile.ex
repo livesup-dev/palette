@@ -44,7 +44,7 @@ defmodule Palette.Components.SidebarProfile do
             <div class="mt-3 px-4">
               <.link
                 href={@profile_path}
-                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600 rounded-md mb-2"
               >
                 <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white">
                   <svg

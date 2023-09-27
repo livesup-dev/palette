@@ -30,7 +30,7 @@ defmodule Palette.Components.AppHeader do
           </button>
         </div>
         <!-- Right: Header buttons -->
-        <div class="-mr-1.5 flex items-center space-x-2">
+        <div class="-mr-1.5 flex items-center space-x-2 md:ml-auto">
           <!-- Mobile Search Toggle -->
           <button
             @click="$store.global.isSearchbarActive = !$store.global.isSearchbarActive"

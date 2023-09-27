@@ -7,11 +7,13 @@ defmodule Palette.Components.BreadcrumbTest do
 
   alias Palette.Components.Breadcrumb.Step
 
-  setup(do: [assigns: %{steps: [%Step{label: "Home"}, %Step{label: "Another"}]}])
+  setup(
+    do: [assigns: %{title: "Testing", steps: [%Step{label: "Home"}, %Step{label: "Another"}]}]
+  )
 
   describe "breadcrumb/1" do
     test "breadcrumb will be render properly", %{assigns: assigns} do
-      h = ~H(<.breadcrumb title="Testing" steps={@steps} />)
+      h = ~H(<.breadcrumb title={@title} steps={@steps} />)
       assert rendered_to_string(h) =~ ~s(>Another<)
     end
   end
