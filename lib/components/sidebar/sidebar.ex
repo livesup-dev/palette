@@ -3,7 +3,7 @@ defmodule Palette.Components.Sidebar do
 
   def render(assigns) do
     ~H"""
-    <div class="sidebar ">
+    <div class="sidebar">
       <%= render_slot(@inner_block) %>
     </div>
     """

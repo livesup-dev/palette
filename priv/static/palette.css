@@ -15421,10 +15421,6 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   margin-top: 0.375rem;
 }
 
-.mt-14 {
-  margin-top: 3.5rem;
-}
-
 .mt-16 {
   margin-top: 4rem;
 }
@@ -15619,10 +15615,6 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .w-14 {
   width: 3.5rem;
-}
-
-.w-16 {
-  width: 4rem;
 }
 
 .w-2 {
@@ -15916,6 +15908,10 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .place-items-center {
   place-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-center {
@@ -18342,6 +18338,10 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 }
 
 @media (min-width: 768px) {
+  .md\:ml-auto {
+    margin-left: auto;
+  }
+
   .md\:py-32 {
     padding-top: 8rem;
     padding-bottom: 8rem;
@@ -18399,11 +18399,6 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
   .lg\:pr-3 {
     padding-right: 0.75rem;
-  }
-
-  .lg\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
   }
 }
 
