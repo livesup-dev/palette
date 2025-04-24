@@ -1,6 +1,9 @@
 defmodule Palette.Components.Head do
   use Phoenix.Component
 
+  # Import convenience functions from controllers
+  import Phoenix.Controller, only: [get_csrf_token: 0]
+
   attr(:google_map, :boolean, default: false)
   attr(:title_suffix, :string, default: "")
   slot(:custom)
@@ -22,7 +25,7 @@ defmodule Palette.Components.Head do
 
       <link rel="icon" type="image/png" href="/images/favicon.png" />
 
-      <meta name="csrf-token" content={Phoenix.HTML.Tag.csrf_token_value()} />
+      <meta name="csrf-token" content={get_csrf_token()} />
       <.live_title suffix={" · #{@title_suffix}"}>
         <%= assigns[:page_title] || "Welcome" %>
       </.live_title>
