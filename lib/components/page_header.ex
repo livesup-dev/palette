@@ -1,6 +1,6 @@
 defmodule Palette.Components.PageHeader do
   use Phoenix.Component
-  use Phoenix.HTML
+  import Phoenix.HTML
   alias Palette.Components.Breadcrumb
 
   attr(:breadcrumb, :list, required: true)

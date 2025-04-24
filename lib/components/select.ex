@@ -1,6 +1,6 @@
 defmodule Palette.Components.Select do
   use Phoenix.Component
-  use Phoenix.HTML
+  import Phoenix.HTML
   import Palette.Components.FieldHelper
 
   @doc """

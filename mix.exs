@@ -26,9 +26,9 @@ defmodule Palette.MixProject do
   defp deps do
     [
       # Phoenix
-      {:phoenix_html, "~> 3.0"},
+      {:phoenix_html, "~> 4.0"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
-      {:phoenix_live_view, "~> 0.20"},
+      {:phoenix_live_view, "~> 1.0"},
       # {:phoenix_live_view,
       #  github: "phoenixframework/phoenix_live_view", branch: "main", override: true},
       {:jason, "~> 1.0"},
